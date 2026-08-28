@@ -1,864 +1,551 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Value Bet Formula v2 — Saratoga Thursday July 23 2026</title>
+<title>Longshot Card — Saratoga August 28 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --gold:#C8A96E;--gold-lt:#E8D5A3;--gold-dim:rgba(200,169,110,0.15);
   --rose:#C0394A;--rose-dim:rgba(192,57,74,0.14);
-  --green:#4CAF73;--green-dim:rgba(76,175,115,0.13);
-  --blue:#5AABF5;--blue-dim:rgba(90,171,245,0.10);
-  --amber:#E0A820;--amber-dim:rgba(224,168,32,0.12);
+  --green:#4CAF73;
   --purple:#B07FD8;--purple-dim:rgba(176,127,216,0.13);
-  --bg:#06080A;--bg2:#0D1014;--bg3:#151A1F;--bg4:#1C2228;
+  --bg:#06080A;--bg2:#0D1014;--bg3:#151A1F;
   --border:rgba(200,169,110,0.14);--border-lt:rgba(200,169,110,0.30);
   --text:#F2EFE4;--text-muted:#A89E8C;--text-dim:#6A6258;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
-.wrap{max-width:1040px;margin:0 auto;padding:0 22px;position:relative;}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px;}
 
-.top-bar{background:#080E0A;border-bottom:1px solid rgba(76,175,115,0.22);padding:9px 22px;font-family:‘DM Mono’,monospace;font-size:10px;letter-spacing:0.12em;color:var(–green);display:flex;gap:14px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:200;}
-.top-bar strong{color:var(–gold-lt);}
-.badge{background:rgba(176,127,216,0.18);border:0.5px solid rgba(176,127,216,0.45);padding:2px 8px;font-size:9px;letter-spacing:0.1em;color:var(–purple);animation:pulse 3s ease infinite;}
-.badge-g{background:rgba(200,169,110,0.15);border:0.5px solid rgba(200,169,110,0.4);color:var(–gold);}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.55}}
+.top-bar{background:#080E0A;border-bottom:1px solid rgba(200,169,110,0.2);padding:9px 20px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--gold);display:flex;gap:12px;flex-wrap:wrap;align-items:center;position:sticky;top:0;z-index:200;}
+.top-bar strong{color:#fff;}
 
-/* HERO */
-.hero{padding:40px 0 30px;border-bottom:1px solid var(–border);}
-.eyebrow{font-family:‘DM Mono’,monospace;font-size:10px;letter-spacing:0.30em;color:var(–gold);text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;gap:11px;}
-.eyebrow::before{content:’’;width:26px;height:1px;background:var(–gold);opacity:0.4;}
-h1{font-family:‘Cormorant Garamond’,serif;font-size:clamp(30px,5vw,64px);font-weight:300;line-height:0.93;letter-spacing:-0.02em;margin-bottom:7px;}
-h1 em{font-style:italic;color:var(–gold);}
-.hero-sub{font-family:‘Cormorant Garamond’,serif;font-size:clamp(13px,1.7vw,17px);font-weight:300;color:var(–text-muted);font-style:italic;margin-bottom:16px;}
-.pills{display:flex;flex-wrap:wrap;gap:0;}
-.pill{font-family:‘DM Mono’,monospace;font-size:9px;letter-spacing:0.08em;color:var(–text-muted);padding:5px 11px;border:0.5px solid var(–border);display:flex;align-items:center;gap:5px;}
-.pill::before{content:’’;width:5px;height:5px;border-radius:50%;background:var(–gold);flex-shrink:0;}
-.pill-g::before{background:var(–green);}
-.pill-p::before{background:var(–purple);}
-
-/* PLAN SECTION */
-.plan{background:var(–bg2);border:1px solid var(–border-lt);padding:28px 28px;margin:28px 0 0;}
-.plan-title{font-family:‘DM Mono’,monospace;font-size:9px;letter-spacing:0.26em;color:var(–purple);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
-.plan-title::after{content:’’;flex:1;height:0.5px;background:rgba(176,127,216,0.25);}
-.plan-body{font-family:‘Cormorant Garamond’,serif;font-size:clamp(15px,1.8vw,18px);font-weight:300;color:var(–text-muted);line-height:1.85;margin-bottom:18px;}
-.plan-body strong{color:var(–text);font-weight:600;}
-.plan-body em{color:var(–gold);font-style:italic;}
-.target-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
-@media(max-width:600px){.target-grid{grid-template-columns:1fr;}}
-.target{background:var(–bg3);border:0.5px solid var(–border);padding:14px;}
-.target.hot{border-color:rgba(176,127,216,0.5);background:var(–purple-dim);}
-.target.hot::before{content:‘BIG MONEY RACE’;display:block;font-family:‘DM Mono’,monospace;font-size:7px;letter-spacing:0.14em;color:var(–purple);margin-bottom:8px;}
-.target.med{border-color:rgba(200,169,110,0.3);}
-.target.med::before{content:‘MEDIUM PLAY’;display:block;font-family:‘DM Mono’,monospace;font-size:7px;letter-spacing:0.14em;color:var(–gold);margin-bottom:8px;}
-.target.sml{border-color:rgba(255,255,255,0.08);}
-.target.sml::before{content:‘ACTION ONLY’;display:block;font-family:‘DM Mono’,monospace;font-size:7px;letter-spacing:0.14em;color:var(–text-dim);margin-bottom:8px;}
-.target-race{font-family:‘Cormorant Garamond’,serif;font-size:20px;font-weight:600;color:var(–text);margin-bottom:3px;}
-.target-why{font-size:11px;color:var(–text-muted);line-height:1.6;}
-.target-amt{font-family:‘DM Mono’,monospace;font-size:14px;color:var(–gold);margin-top:8px;font-weight:500;}
+.hero{padding:32px 0 22px;border-bottom:1px solid var(--border);}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.28em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,64px);font-weight:300;line-height:0.93;letter-spacing:-0.02em;margin-bottom:6px;}
+h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text-muted);font-style:italic;margin-bottom:14px;}
+.rule-box{background:var(--bg2);border:1px solid rgba(200,169,110,0.35);padding:14px 18px;margin-top:16px;display:flex;gap:20px;flex-wrap:wrap;}
+.rule{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);display:flex;align-items:center;gap:7px;}
+.rule::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
 
 /* RACE NAV */
-.race-nav-wrap{background:var(–bg2);border-bottom:1px solid var(–border);position:sticky;top:37px;z-index:100;overflow-x:auto;}
-.race-nav{display:flex;gap:0;min-width:max-content;}
-.rnav{font-family:‘DM Mono’,monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:10px 13px;cursor:pointer;color:var(–text-dim);border:none;background:transparent;border-bottom:2px solid transparent;transition:all 0.17s;white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:2px;}
-.rnav:hover{color:var(–text-muted);}
-.rnav.active{color:var(–gold);border-bottom-color:var(–gold);}
-.rnav .rnum{font-size:11px;font-weight:500;}
-.rnav .rtime{font-size:8px;color:var(–text-dim);}
-.rnav.active .rtime{color:rgba(200,169,110,0.6);}
-.rnav .hot-dot{width:5px;height:5px;border-radius:50%;background:var(–purple);margin-top:2px;}
-.rnav .med-dot{width:5px;height:5px;border-radius:50%;background:var(–gold);margin-top:2px;}
+.race-nav-wrap{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:37px;z-index:100;overflow-x:auto;}
+.race-nav{display:flex;min-width:max-content;}
+.rnav{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.07em;text-transform:uppercase;padding:10px 13px;cursor:pointer;color:var(--text-dim);border:none;background:transparent;border-bottom:2px solid transparent;transition:all 0.15s;white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.rnav.active{color:var(--gold);border-bottom-color:var(--gold);}
+.rnav .rn{font-size:12px;font-weight:500;}
+.rnav .rt{font-size:8px;}
+.dot{width:5px;height:5px;border-radius:50%;margin-top:2px;}
+.dot-g{background:var(--gold);}
+.dot-p{background:var(--purple);}
 
-/* RACE PANE */
-.race-pane{display:none;padding:28px 0 44px;}
-.race-pane.active{display:block;animation:fadeUp 0.25s ease forwards;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.race-pane{display:none;padding:28px 0 48px;border-bottom:0.5px solid var(--border);}
+.race-pane.active{display:block;animation:fu 0.2s ease forwards;}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-.race-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:0.5px solid var(–border);}
-.rh-left .rnum-label{font-family:‘DM Mono’,monospace;font-size:9px;letter-spacing:0.20em;color:var(–gold);text-transform:uppercase;margin-bottom:4px;}
-.rh-left .rname{font-family:‘Cormorant Garamond’,serif;font-size:clamp(20px,3.2vw,36px);font-weight:300;color:var(–text);line-height:1.0;margin-bottom:2px;}
-.rh-left .rname em{font-style:italic;color:var(–gold);}
-.rh-left .rdetails{font-family:‘DM Mono’,monospace;font-size:10px;color:var(–text-muted);line-height:1.8;}
-.rh-right{text-align:right;}
-.rh-right .pt-label{font-family:‘DM Mono’,monospace;font-size:8px;color:var(–text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2px;}
-.rh-right .pt{font-family:‘Cormorant Garamond’,serif;font-size:24px;font-weight:300;color:var(–gold);}
-.rh-right .purse{font-family:‘DM Mono’,monospace;font-size:9px;color:var(–text-dim);margin-top:2px;}
+/* RACE HEADER */
+.rh{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
+.rh-l .label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:4px;}
+.rh-l .title{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3.5vw,40px);font-weight:300;color:var(--text);line-height:1.0;}
+.rh-l .title em{color:var(--gold);font-style:italic;}
+.rh-l .sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-muted);margin-top:4px;line-height:1.7;}
+.rh-r{text-align:right;}
+.rh-r .post{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--gold);}
+.rh-r .purse{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-dim);}
 
-/* SPEND BANNER */
-.spend-banner{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;margin-bottom:18px;border:0.5px solid;}
-.spend-banner.hot{border-color:rgba(176,127,216,0.5);background:rgba(176,127,216,0.08);}
-.spend-banner.med{border-color:rgba(200,169,110,0.35);background:rgba(200,169,110,0.07);}
-.spend-banner.sml{border-color:rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);}
-.sb-label{font-family:‘DM Mono’,monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;}
-.spend-banner.hot .sb-label{color:var(–purple);}
-.spend-banner.med .sb-label{color:var(–gold);}
-.spend-banner.sml .sb-label{color:var(–text-dim);}
-.sb-why{font-size:12px;color:var(–text-muted);flex:1;padding:0 14px;}
-.sb-amt{font-family:‘Cormorant Garamond’,serif;font-size:22px;font-weight:300;color:var(–gold);}
+/* RUNNER TABLE */
+.section-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.20em;color:var(--gold);text-transform:uppercase;margin:16px 0 8px;display:flex;align-items:center;gap:10px;}
+.section-label::after{content:'';flex:1;height:0.5px;background:var(--border);}
 
-.slabel{font-family:‘DM Mono’,monospace;font-size:9px;letter-spacing:0.24em;color:var(–gold);text-transform:uppercase;margin:20px 0 10px;display:flex;align-items:center;gap:10px;}
-.slabel::after{content:’’;flex:1;height:0.5px;background:var(–border);}
+.tbl-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;min-width:480px;}
+thead th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.09em;color:var(--text-dim);text-transform:uppercase;text-align:left;padding:5px 8px;border-bottom:0.5px solid var(--border);}
+tbody tr{border-bottom:0.5px solid rgba(255,255,255,0.04);}
+tbody tr.ls{background:rgba(200,169,110,0.07);}
+tbody tr.bomb{background:rgba(176,127,216,0.08);}
+tbody tr.skip td{opacity:0.28;}
+tbody td{padding:8px 8px;font-size:12px;color:var(--text-muted);vertical-align:middle;}
+.pp{font-family:'DM Mono',monospace;font-size:11px;width:22px;height:22px;border:0.5px solid;display:inline-flex;align-items:center;justify-content:center;}
+.pp-ls{border-color:rgba(200,169,110,0.5);color:var(--gold);background:rgba(200,169,110,0.08);}
+.pp-b{border-color:rgba(176,127,216,0.5);color:var(--purple);background:rgba(176,127,216,0.09);}
+.pp-s{border-color:rgba(255,255,255,0.08);color:var(--text-dim);}
+.hname{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--text);}
+.meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-dim);margin-top:1px;}
+.odds{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;}
+.odds-ls{color:var(--gold);}
+.odds-b{color:var(--purple);}
+.odds-s{color:var(--text-dim);}
+.badge{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:0.07em;text-transform:uppercase;padding:2px 5px;border:0.5px solid;}
+.badge-ls{color:var(--gold);border-color:rgba(200,169,110,0.4);background:rgba(200,169,110,0.07);}
+.badge-b{color:var(--purple);border-color:rgba(176,127,216,0.4);background:rgba(176,127,216,0.08);}
+.why{font-size:12px;color:var(--text-muted);line-height:1.65;}
 
-/* TABLE */
-.tbl-wrap{overflow-x:auto;margin-bottom:6px;}
-table{width:100%;border-collapse:collapse;min-width:540px;}
-thead th{font-family:‘DM Mono’,monospace;font-size:8px;letter-spacing:0.10em;color:var(–text-dim);text-transform:uppercase;text-align:left;padding:5px 8px;border-bottom:0.5px solid var(–border);}
-tbody tr{border-bottom:0.5px solid rgba(255,255,255,0.04);transition:background 0.12s;}
-tbody tr:hover{background:var(–bg3);}
-tbody tr.pick{background:rgba(76,175,115,0.07);}
-tbody tr.bomb{background:rgba(176,127,216,0.07);}
-tbody tr.long{background:rgba(200,169,110,0.06);}
-tbody tr.fav{background:rgba(90,171,245,0.05);}
-tbody tr.fade td{opacity:0.38;}
-tbody td{padding:8px 8px;font-size:12px;color:var(–text-muted);vertical-align:middle;}
-.ppb{font-family:‘DM Mono’,monospace;font-size:11px;width:24px;height:24px;border:0.5px solid rgba(255,255,255,0.1);display:inline-flex;align-items:center;justify-content:center;color:var(–text-muted);}
-.ppb.g{border-color:rgba(76,175,115,0.5);color:var(–green);background:rgba(76,175,115,0.08);}
-.ppb.b{border-color:rgba(176,127,216,0.5);color:var(–purple);background:rgba(176,127,216,0.08);}
-.ppb.l{border-color:rgba(200,169,110,0.4);color:var(–gold);background:rgba(200,169,110,0.07);}
-.ppb.f{border-color:rgba(90,171,245,0.4);color:var(–blue);background:rgba(90,171,245,0.07);}
-.ppb.n{border-color:rgba(255,255,255,0.08);color:var(–text-dim);}
-.hname{font-family:‘Cormorant Garamond’,serif;font-size:14px;font-weight:600;color:var(–text);display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
-.hmeta{font-family:‘DM Mono’,monospace;font-size:9px;color:var(–text-muted);margin-top:2px;line-height:1.55;}
-.tag{font-family:‘DM Mono’,monospace;font-size:8px;letter-spacing:0.07em;text-transform:uppercase;padding:2px 5px;border:0.5px solid;white-space:nowrap;}
-.tag-irad{color:#5FD97A;border-color:rgba(95,217,122,0.4);background:rgba(95,217,122,0.08);}
-.tag-prat{color:#5AABF5;border-color:rgba(90,171,245,0.4);background:rgba(90,171,245,0.08);}
-.tag-long{color:var(–gold);border-color:rgba(200,169,110,0.4);background:rgba(200,169,110,0.07);}
-.tag-bomb{color:var(–purple);border-color:rgba(176,127,216,0.4);background:rgba(176,127,216,0.07);}
-.tag-skip{color:var(–rose);border-color:rgba(192,57,74,0.3);background:rgba(192,57,74,0.06);}
-.tag-fav{color:var(–blue);border-color:rgba(90,171,245,0.35);background:rgba(90,171,245,0.07);}
-.odds-c{font-family:‘DM Mono’,monospace;font-size:11px;font-weight:500;color:var(–text);}
-.sig{font-family:‘DM Mono’,monospace;font-size:8px;letter-spacing:0.06em;text-transform:uppercase;padding:2px 6px;border:0.5px solid;white-space:nowrap;}
-.sig-vv{color:#FFE066;border-color:rgba(255,224,102,0.45);background:rgba(255,224,102,0.07);}
-.sig-v{color:var(–green);border-color:rgba(76,175,115,0.38);background:rgba(76,175,115,0.07);}
-.sig-l{color:var(–gold);border-color:rgba(200,169,110,0.38);background:rgba(200,169,110,0.07);}
-.sig-b{color:var(–purple);border-color:rgba(176,127,216,0.42);background:rgba(176,127,216,0.08);}
-.sig-f{color:var(–blue);border-color:rgba(90,171,245,0.35);background:rgba(90,171,245,0.07);}
-.sig-s{color:var(–text-dim);border-color:rgba(255,255,255,0.1);}
-.sig-skip{color:var(–rose);border-color:rgba(192,57,74,0.3);background:rgba(192,57,74,0.06);}
+/* BET CARDS */
+.bets{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+@media(max-width:540px){.bets{grid-template-columns:1fr;}}
+.bet{background:var(--bg2);border:0.5px solid var(--border);padding:16px;position:relative;}
+.bet.main{border-color:var(--gold);}
+.bet.main::before{content:'THE BET';position:absolute;top:-1px;right:12px;background:var(--gold);color:var(--bg);font-family:'DM Mono',monospace;font-size:7px;letter-spacing:0.15em;padding:2px 7px;}
+.bet.sup{border-color:rgba(176,127,216,0.5);}
+.bet.sup::before{content:'SUPER ⚡';position:absolute;top:-1px;right:12px;background:var(--purple);color:#F0EAF8;font-family:'DM Mono',monospace;font-size:7px;letter-spacing:0.10em;padding:2px 7px;}
+.bet-type{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;margin-bottom:7px;}
+.horses{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+.horse-tag{font-family:'DM Mono',monospace;font-size:11px;padding:3px 8px;border:0.5px solid;}
+.ht-ls{color:var(--gold);border-color:rgba(200,169,110,0.4);background:rgba(200,169,110,0.08);}
+.ht-b{color:var(--purple);border-color:rgba(176,127,216,0.4);background:rgba(176,127,216,0.08);}
+.bet-foot{display:flex;justify-content:space-between;align-items:flex-end;border-top:0.5px solid var(--border);padding-top:9px;margin-top:3px;}
+.cost{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-muted);line-height:1.5;}
+.cost strong{display:block;font-size:18px;color:var(--gold);font-weight:400;}
+.say{font-size:10px;color:var(--text-dim);font-style:italic;max-width:150px;text-align:right;line-height:1.5;}
 
-/* CALLOUTS */
-.callout{border-left:2px solid var(–gold);padding:9px 13px;margin:10px 0;background:var(–gold-dim);}
-.callout p,.warn p,.pcall p,.icall p{font-size:13px;color:var(–text-muted);line-height:1.72;}
-.callout strong{color:var(–text);font-weight:500;}
-.warn{border-left:2px solid var(–rose);padding:9px 13px;margin:9px 0;background:var(–rose-dim);}
-.warn strong{color:#E87080;font-weight:500;}
-.pcall{border-left:2px solid var(–purple);padding:9px 13px;margin:9px 0;background:var(–purple-dim);}
-.pcall strong{color:var(–purple);font-weight:500;}
-.icall{border-left:2px solid var(–blue);padding:9px 13px;margin:9px 0;background:var(–blue-dim);}
-.icall strong{color:var(–blue);font-weight:500;}
-.purple-dim{background:rgba(176,127,216,0.08);}
-
-/* TICKETS */
-.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
-@media(max-width:600px){.tgrid{grid-template-columns:1fr;}}
-.ticket{background:var(–bg2);border:0.5px solid var(–border);padding:14px;position:relative;transition:border-color 0.15s;}
-.ticket:hover{border-color:var(–border-lt);}
-.ticket.main{border-color:var(–gold);grid-column:1/-1;}
-.ticket.main::before{content:‘BEST BET’;position:absolute;top:-1px;right:12px;background:var(–gold);color:var(–bg);font-family:‘DM Mono’,monospace;font-size:7px;letter-spacing:0.18em;padding:2px 7px;}
-.ticket.bomb-t{border-color:rgba(176,127,216,0.5);grid-column:1/-1;}
-.ticket.bomb-t::before{content:‘JACKPOT PLAY ⚡’;position:absolute;top:-1px;right:12px;background:var(–purple);color:#F0EAF8;font-family:‘DM Mono’,monospace;font-size:7px;letter-spacing:0.10em;padding:2px 7px;}
-.t-type{font-family:‘DM Mono’,monospace;font-size:8px;letter-spacing:0.14em;color:var(–gold);text-transform:uppercase;margin-bottom:6px;}
-.t-name{font-family:‘Cormorant Garamond’,serif;font-size:15px;font-weight:600;color:var(–text);margin-bottom:8px;line-height:1.2;}
-.t-horses{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;}
-.th{font-family:‘DM Mono’,monospace;font-size:10px;padding:2px 7px;border:0.5px solid;}
-.th-key{color:var(–blue);border-color:rgba(90,171,245,0.35);background:rgba(90,171,245,0.08);}
-.th-val{color:var(–gold-lt);border-color:rgba(200,169,110,0.35);background:rgba(200,169,110,0.07);}
-.th-long{color:var(–green);border-color:rgba(76,175,115,0.35);background:rgba(76,175,115,0.07);}
-.th-bomb{color:var(–purple);border-color:rgba(176,127,216,0.35);background:rgba(176,127,216,0.07);}
-.th-ls{color:var(–amber);border-color:rgba(224,168,32,0.35);background:rgba(224,168,32,0.07);}
-.t-foot{display:flex;justify-content:space-between;align-items:flex-end;border-top:0.5px solid var(–border);padding-top:9px;}
-.t-cost{font-family:‘DM Mono’,monospace;font-size:9px;color:var(–text-muted);line-height:1.6;}
-.t-cost strong{display:block;font-size:17px;color:var(–gold);font-weight:400;}
-.t-say{font-size:11px;color:var(–text-dim);line-height:1.5;max-width:180px;text-align:right;font-style:italic;}
-
-.race-total{display:flex;justify-content:space-between;align-items:center;border:0.5px solid var(–border-lt);padding:11px 15px;margin-top:10px;background:var(–bg2);}
-.rt-label{font-family:‘DM Mono’,monospace;font-size:9px;color:var(–text-muted);letter-spacing:0.09em;text-transform:uppercase;}
-.rt-amt{font-family:‘Cormorant Garamond’,serif;font-size:26px;font-weight:300;color:var(–gold);}
-
-.window{background:var(–bg3);border:0.5px solid var(–border);padding:13px 15px;margin-top:10px;}
-.win-title{font-family:‘DM Mono’,monospace;font-size:9px;letter-spacing:0.14em;color:var(–gold);text-transform:uppercase;margin-bottom:9px;}
-.wr{display:flex;gap:8px;margin-bottom:7px;align-items:flex-start;border-bottom:0.5px solid rgba(255,255,255,0.04);padding-bottom:7px;}
-.wr:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0;}
-.wtag{font-family:‘DM Mono’,monospace;font-size:8px;letter-spacing:0.07em;text-transform:uppercase;padding:2px 5px;border:0.5px solid;white-space:nowrap;flex-shrink:0;margin-top:2px;}
-.wex{color:var(–blue);border-color:rgba(90,171,245,0.3);}
-.wtri{color:var(–gold);border-color:rgba(200,169,110,0.3);}
-.wsup{color:var(–purple);border-color:rgba(176,127,216,0.3);}
-.wsay{font-size:12px;color:var(–text);font-style:italic;line-height:1.6;flex:1;}
-.wcost{font-family:‘DM Mono’,monospace;font-size:11px;color:var(–gold);white-space:nowrap;flex-shrink:0;align-self:center;}
+.race-total{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;margin-top:10px;background:var(--bg2);border:0.5px solid var(--border-lt);}
+.rt-l{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-muted);}
+.rt-r{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--gold);}
 
 /* DAY SUMMARY */
-.day-sum{background:var(–bg2);border:0.5px solid var(–border-lt);padding:18px 20px;margin-top:14px;}
-.ds-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:0.5px solid var(–border);}
-.ds-row:last-of-type{border-bottom:none;}
-.ds-left{flex:1;}
-.ds-race{font-family:‘DM Mono’,monospace;font-size:9px;color:var(–text-muted);}
-.ds-bets{font-size:11px;color:var(–text-dim);margin-top:2px;}
-.ds-type{font-family:‘DM Mono’,monospace;font-size:8px;padding:2px 6px;border:0.5px solid;margin-right:8px;white-space:nowrap;}
-.ds-type.hot{color:var(–purple);border-color:rgba(176,127,216,0.35);}
-.ds-type.med{color:var(–gold);border-color:rgba(200,169,110,0.35);}
-.ds-type.sml{color:var(–text-dim);border-color:rgba(255,255,255,0.1);}
-.ds-cost{font-family:‘DM Mono’,monospace;font-size:12px;color:var(–gold);white-space:nowrap;}
-.ds-total{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:0.5px solid var(–border-lt);}
-.ds-tl{font-family:‘DM Mono’,monospace;font-size:9px;color:var(–text-muted);letter-spacing:0.09em;text-transform:uppercase;}
-.ds-ta{font-family:‘Cormorant Garamond’,serif;font-size:30px;font-weight:300;color:var(–gold);}
+.day-grid{display:flex;flex-direction:column;gap:0;margin-top:10px;background:var(--bg2);border:0.5px solid var(--border-lt);}
+.day-row{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:0.5px solid var(--border);}
+.day-row:last-of-type{border-bottom:none;}
+.dr-l{flex:1;}
+.dr-race{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-muted);}
+.dr-pick{font-size:12px;color:var(--text);margin-top:2px;}
+.dr-cost{font-family:'DM Mono',monospace;font-size:13px;color:var(--gold);flex-shrink:0;margin-left:12px;}
+.day-total{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-top:0.5px solid var(--border-lt);margin-top:1px;}
+.dt-l{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;}
+.dt-r{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--gold);}
 
-/* LEGEND */
-.legend{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 4px;font-family:‘DM Mono’,monospace;font-size:9px;}
-.leg{display:flex;align-items:center;gap:5px;color:var(–text-muted);}
-.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
-.ld-g{background:rgba(76,175,115,0.25);border:0.5px solid rgba(76,175,115,0.5);}
-.ld-l{background:rgba(200,169,110,0.2);border:0.5px solid rgba(200,169,110,0.45);}
-.ld-b{background:rgba(176,127,216,0.2);border:0.5px solid rgba(176,127,216,0.45);}
-.ld-f{background:rgba(90,171,245,0.12);border:0.5px solid rgba(90,171,245,0.4);}
-.ld-n{background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.1);}
+.note{border-left:2px solid var(--gold);padding:9px 13px;margin:12px 0;background:var(--gold-dim);}
+.note p{font-size:13px;color:var(--text-muted);line-height:1.72;}
+.note strong{color:var(--text);font-weight:500;}
 
-footer{padding:26px 0;border-top:0.5px solid var(–border);margin-top:18px;}
-.foot-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;}
-.foot-brand{font-family:‘Cormorant Garamond’,serif;font-size:16px;font-weight:300;font-style:italic;color:var(–gold);margin-bottom:3px;}
-.foot-meta{font-family:‘DM Mono’,monospace;font-size:9px;color:var(–text-dim);letter-spacing:0.09em;text-transform:uppercase;margin-bottom:7px;}
-.foot-disc{font-size:11px;color:var(–text-dim);line-height:1.7;max-width:460px;}
-
-@media(max-width:580px){
-table{font-size:11px;}thead th,tbody td{padding:4px 5px;}
-.tgrid{grid-template-columns:1fr;}
-.target-grid{grid-template-columns:1fr;}
-.plan{padding:18px 16px;}
-}
+footer{padding:22px 0;margin-top:20px;border-top:0.5px solid var(--border);}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;}
+.foot-brand{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:300;font-style:italic;color:var(--gold);}
+.foot-disc{font-size:11px;color:var(--text-dim);line-height:1.7;max-width:460px;}
 </style>
-
 </head>
 <body>
 
 <div class="top-bar">
-  🏇 SARATOGA · THURSDAY JULY 23 2026 &nbsp;·&nbsp;
-  <strong>9 races · First post 1:10 PM · $186 budget</strong>
-  <span class="badge">⚡ HUNT ONE BIG PAYOUT</span>
-  <span class="badge badge-g">Formula v2</span>
+  🏇 SARATOGA · FRI AUG 28 2026 &nbsp;·&nbsp; <strong>LONGSHOT CARD · Simple Boxes · Prices Only</strong>
 </div>
 
 <div class="wrap">
 <div class="hero">
-  <div class="eyebrow">Value Bet Formula v2 · Saratoga Race Course · July 23, 2026</div>
-  <h1>Saratoga<br><em>Race Day Guide</em></h1>
-  <div class="hero-sub">Thursday · 9 races · Live at the window · One big payout strategy</div>
-  <div class="pills">
-    <div class="pill">9 races · First post 1:10 PM</div>
-    <div class="pill pill-p">Hunt one big payout · $186 budget</div>
-    <div class="pill pill-g">Suzie O'Cain Stakes R7 · $200K</div>
-    <div class="pill">Prat leads meet 19 wins · Irad back</div>
+  <div class="eyebrow">Value Bet Formula v2 · Longshot Edition · August 28 2026</div>
+  <h1>Saratoga<br><em>Longshot Card</em></h1>
+  <div class="hero-sub">No chalk on top. Simple boxes. One or two bets per race. Hunt the big number.</div>
+  <div class="rule-box">
+    <div class="rule">No horse under 5-1 is the primary pick</div>
+    <div class="rule">Simple boxes only — no keys</div>
+    <div class="rule">One or two bets per race</div>
+    <div class="rule">Favorites included in box only when they add payout lift</div>
   </div>
 </div>
-
-<!-- THE PLAN -->
-
-<div class="plan">
-  <div class="plan-title">The Plan for Today</div>
-  <div class="plan-body">
-    Last time out at Saratoga on July 17th, the formula cashed three races — Discotheque in Race 2, Lexi's Charm in Race 4, and Antietam in Race 7. We spent <strong>$235</strong> and got back <strong>$136</strong>. Three winners, still a loss. The problem wasn't the picks. It was the structure. We spread money too thin across too many races, and the payouts on the races we hit — particularly that $4.62 exacta in Race 7 with the 2-1 favorite sitting second — couldn't overcome the bleed.<br><br>
-    Today the formula runs differently. <strong>We are hunting one good payout, not trying to cash nine races.</strong> The budget is $186 total, but it is not split evenly. Races 1, 2, 4, and 6 get <em>action-only bets</em> — small, low-cost tickets just to stay engaged. Race 3 gets a medium play on the Irad/Sharp angle. The real money goes into three races where the payout structure is right:<br><br>
-    <strong>Race 5</strong> — the 2-year-old maiden with first-time starters is the chaos race. Superfectas in these fields regularly pay $200 to $2,000. We're putting $48 here almost entirely into the superfecta.<br><br>
-    <strong>Race 7</strong> — the Suzie O'Cain Stakes $200K is the feature. Eight NY-bred fillies, Celtic Dawn (Irad) vs. All of It (Franco), Prat at 5-1 underneath. If the two favorites run 1-2 the trifecta pays nothing. But if Considerate City or New York Special sneaks in, this pays big. We skip putting All of It on top and attack with spread coverage.<br><br>
-    <strong>Race 8</strong> — the $130K AOC 7-furlong fillies race has the best odds distribution on the card: 7-2, 5-2, 7-2, and 6-1 all live. Any combination of three that avoids the obvious chalks pays meaningfully. We upgrade to $1 trifecta combos here.
-  </div>
-
-  <div class="target-grid">
-    <div class="target hot">
-      <div class="target-race">Race 5 · 3:29p</div>
-      <div class="target-why">2yo MSW — first-timers, chaos, superfectas pay $200–2,000. Side Quest with Irad and blinker removal. Drop most of the budget here.</div>
-      <div class="target-amt">$48 allocated</div>
-    </div>
-    <div class="target hot">
-      <div class="target-race">Race 7 · 4:39p</div>
-      <div class="target-why">Suzie O'Cain $200K — Celtic Dawn (Irad, undefeated) vs. All of It (8-5 chalk). Skip chalk on top. Prat at 5-1 and New York Special at 8-1 are the upset plays.</div>
-      <div class="target-amt">$48 allocated</div>
-    </div>
-    <div class="target hot">
-      <div class="target-race">Race 8 · 5:14p</div>
-      <div class="target-why">$130K AOC 7f fillies — best spread odds on card. Beauty Reigns, Senza Parole, Munnings Express, Reputation. Upgrade to $1 trifecta combos.</div>
-      <div class="target-amt">$36 allocated</div>
-    </div>
-    <div class="target med">
-      <div class="target-race">Race 3 · 2:19p</div>
-      <div class="target-why">Irad + Joe Sharp angle. Normandy Coast 4-1 is a big class drop, Mr. Skylight 8-1 is the formula's longshot. Real signal here.</div>
-      <div class="target-amt">$24 allocated</div>
-    </div>
-    <div class="target sml">
-      <div class="target-race">Races 1, 2, 4, 6, 9</div>
-      <div class="target-why">Action-only. $6–12 each. Stay engaged, don't bleed the budget on races without genuine payout potential.</div>
-      <div class="target-amt">$30 total</div>
-    </div>
-    <div class="target sml">
-      <div class="target-race">The Core Rule</div>
-      <div class="target-why">No bet with a sub-3-1 horse on top. Favorites go in the box underneath only. We need price to make a payout worthwhile.</div>
-      <div class="target-amt">Formula v2</div>
-    </div>
-  </div>
 </div>
 
-</div>
-
-<!-- RACE NAV -->
-
+<!-- NAV -->
 <div class="race-nav-wrap">
   <div class="race-nav">
-    <button class="rnav active" onclick="showRace('r1',this)"><span class="rnum">R1</span><span class="rtime">1:10p</span></button>
-    <button class="rnav" onclick="showRace('r2',this)"><span class="rnum">R2</span><span class="rtime">1:44p</span></button>
-    <button class="rnav" onclick="showRace('r3',this)"><span class="rnum">R3</span><span class="rtime">2:19p</span><span class="med-dot"></span></button>
-    <button class="rnav" onclick="showRace('r4',this)"><span class="rnum">R4</span><span class="rtime">2:54p</span></button>
-    <button class="rnav" onclick="showRace('r5',this)"><span class="rnum">R5</span><span class="rtime">3:29p</span><span class="hot-dot"></span></button>
-    <button class="rnav" onclick="showRace('r6',this)"><span class="rnum">R6</span><span class="rtime">4:04p</span></button>
-    <button class="rnav" onclick="showRace('r7',this)"><span class="rnum">R7</span><span class="rtime">4:39p</span><span class="hot-dot"></span></button>
-    <button class="rnav" onclick="showRace('r8',this)"><span class="rnum">R8</span><span class="rtime">5:14p</span><span class="hot-dot"></span></button>
-    <button class="rnav" onclick="showRace('r9',this)"><span class="rnum">R9</span><span class="rtime">5:44p</span></button>
-    <button class="rnav" onclick="showRace('day',this)"><span class="rnum">DAY</span><span class="rtime">$186</span></button>
+    <button class="rnav active" onclick="go('r1',this)"><span class="rn">R1</span><span class="rt">1:10p</span></button>
+    <button class="rnav" onclick="go('r2',this)"><span class="rn">R2</span><span class="rt">1:43p</span></button>
+    <button class="rnav" onclick="go('r3',this)"><span class="rn">R3</span><span class="rt">2:16p</span><div class="dot dot-g"></div></button>
+    <button class="rnav" onclick="go('r4',this)"><span class="rn">R4</span><span class="rt">2:49p</span></button>
+    <button class="rnav" onclick="go('r5',this)"><span class="rn">R5</span><span class="rt">3:23p</span><div class="dot dot-p"></div></button>
+    <button class="rnav" onclick="go('r6',this)"><span class="rn">R6</span><span class="rt">3:57p</span></button>
+    <button class="rnav" onclick="go('r7',this)"><span class="rn">R7</span><span class="rt">4:32p</span><div class="dot dot-g"></div></button>
+    <button class="rnav" onclick="go('r8',this)"><span class="rn">R8</span><span class="rt">5:07p</span><div class="dot dot-p"></div></button>
+    <button class="rnav" onclick="go('r9',this)"><span class="rn">R9</span><span class="rt">5:41p</span></button>
+    <button class="rnav" onclick="go('r10',this)"><span class="rn">R10</span><span class="rt">6:15p</span><div class="dot dot-g"></div></button>
+    <button class="rnav" onclick="go('day',this)"><span class="rn">DAY</span><span class="rt">$130</span></button>
   </div>
 </div>
 
 <div class="wrap">
 
-<!-- ════════════════════════ RACE 1 ════════════════════════ -->
-
+<!-- ═══ R1 ═══ -->
 <div id="r1" class="race-pane active">
-  <div class="race-header">
-    <div class="rh-left">
-      <div class="rnum-label">Race 1 · 7 Furlongs · Dirt · Maiden Claiming $35K</div>
-      <div class="rname">Race 1 — <em>Maiden Claiming</em></div>
-      <div class="rdetails">$52,000 purse · 9 fillies & mares · 3yo & up · Small action bet only</div>
-    </div>
-    <div class="rh-right"><div class="pt-label">Post</div><div class="pt">1:10 PM</div><div class="purse">$52,000</div></div>
+  <div class="rh">
+    <div class="rh-l"><div class="label">Race 1 · 5½F · Turf · Maiden Special Weight · 2yo Fillies</div><div class="title">2yo Turf <em>Fillies Maiden</em></div><div class="sub">$115,000 · 7 runners · Small action · Rockabye (Clement/Franco) 8-5 favorite</div></div>
+    <div class="rh-r"><div class="post">1:10 PM</div><div class="purse">$115,000</div></div>
   </div>
-
-  <div class="spend-banner sml">
-    <div class="sb-label">Action Only</div>
-    <div class="sb-why">9-horse maiden claimer to open the day. Small bet, stay warm, don't burn budget here.</div>
-    <div class="sb-amt">$12</div>
-  </div>
-
-  <div class="slabel">Full Field — Post Position Order</div>
-  <div class="legend">
-    <div class="leg"><div class="ld ld-g"></div>Formula pick</div>
-    <div class="leg"><div class="ld ld-f"></div>Favorite Filter (box underneath)</div>
-    <div class="leg"><div class="ld ld-l"></div>Longshot</div>
-    <div class="leg"><div class="ld ld-b"></div>Dangerous Skip</div>
-    <div class="leg"><div class="ld ld-n"></div>Skip</div>
-  </div>
+  <div class="section-label">Full Field</div>
   <div class="tbl-wrap"><table>
-    <thead><tr><th>PP</th><th>Horse</th><th>ML</th><th>Trainer</th><th>Jockey</th><th>Signal</th></tr></thead>
+    <thead><tr><th>PP</th><th>Horse</th><th>Trainer · Jockey</th><th>ML</th><th>Formula</th></tr></thead>
     <tbody>
-      <tr class="fade"><td><span class="ppb n">1</span></td><td><div class="hname">That's Amore</div><div class="hmeta">Zito / K. Davis · 20-1 · maiden claimer debut</div></td><td class="odds-c">20/1</td><td>Zito</td><td>K. Davis</td><td><span class="sig sig-s">Skip</span></td></tr>
-      <tr class="fav"><td><span class="ppb f">2</span></td><td><div class="hname">Key Actress <span class="tag tag-fav">Fav Filter</span></div><div class="hmeta">Maker / Santana Jr. · 5-2 · Maker/Santana dangerous but price too short to lead</div></td><td class="odds-c">5/2</td><td>Maker</td><td>Santana Jr.</td><td><span class="sig sig-f">In box</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">3</span></td><td><div class="hname">Bounding Along</div><div class="hmeta">Falcone / <strong>Prat</strong> · 7/2 · nearly won debut vs NYBs · Prat back aboard · steps up in company</div></td><td class="odds-c">7/2</td><td>Falcone</td><td>Prat</td><td><span class="sig sig-vv">Value ★★</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">4</span></td><td><div class="hname">Golden Miracle</div><div class="hmeta">Jimenez / Gutierrez · 30-1 · hard skip</div></td><td class="odds-c">30/1</td><td>Jimenez</td><td>Gutierrez</td><td><span class="sig sig-s">Skip</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">5</span></td><td><div class="hname">Credit Risk</div><div class="hmeta">Bartkowski / Saez · 8-1 · Saez angle but barn winrate light</div></td><td class="odds-c">8/1</td><td>Bartkowski</td><td>Saez</td><td><span class="sig sig-s">Skip</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">6</span></td><td><div class="hname">Run On States</div><div class="hmeta">Medina / Gaffalione · 5-1 · first start since December · 2yo form not terrible · drops for tag</div></td><td class="odds-c">5/1</td><td>Medina</td><td>Gaffalione</td><td><span class="sig sig-v">Value</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">7</span></td><td><div class="hname">Noisetomakenoise</div><div class="hmeta">Green / Rodriguez · 10-1 · small barn</div></td><td class="odds-c">10/1</td><td>Green</td><td>Rodriguez</td><td><span class="sig sig-s">Skip</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">8</span></td><td><div class="hname">Maizey Blue</div><div class="hmeta">Rodriguez / Zayas · 15-1 · skip</div></td><td class="odds-c">15/1</td><td>Rodriguez</td><td>Zayas</td><td><span class="sig sig-s">Skip</span></td></tr>
-      <tr class="fav"><td><span class="ppb f">9</span></td><td><div class="hname">Authentic Beauty <span class="tag tag-fav">Fav Filter</span></div><div class="hmeta">LaRose / Alvarado · 3-1 · cuts back in distance, class drop · Alvarado options from outside</div></td><td class="odds-c">3/1</td><td>LaRose</td><td>Alvarado</td><td><span class="sig sig-f">In box</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">1</span></td><td><div class="hname">Hormesis</div><div class="meta">Mandaloun</div></td><td>LaRose · C. Elliott</td><td><span class="odds odds-s">8/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">2</span></td><td><div class="hname">Bolt Island</div><div class="meta">Bolt d'Oro · Casse barn</div></td><td>M. Casse · Castellano</td><td><span class="odds odds-ls">6/1</span></td><td><span class="badge badge-ls">Longshot ★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">3</span></td><td><div class="hname">Quartz Mountain</div><div class="meta">Golden Pal · Ward 2yo barn elite · HRN pick</div></td><td>W. Ward · Jose Ortiz</td><td><span class="odds odds-ls">5/2</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">4</span></td><td><div class="hname">Breaker</div><div class="meta">Into Mischief · Pletcher / Prat</div></td><td>Pletcher · Prat</td><td><span class="odds odds-ls">9/2</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">5</span></td><td><div class="hname">Rockabye</div><div class="meta">Flightline · Clement / Franco · FAVORITE</div></td><td>Clement · Franco</td><td><span class="odds odds-s">8/5</span></td><td>Skip — chalk</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">6</span></td><td><div class="hname">Pay Monthly</div><div class="meta">Golden Pal · Cox / Saez · elite debut barn</div></td><td>B. Cox · Saez</td><td><span class="odds odds-ls">5/1</span></td><td><span class="badge badge-ls">Longshot ★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">7</span></td><td><div class="hname">Classy Runner</div><div class="meta">Hard Spun · MTO (main track only)</div></td><td>Terranova · Castellano</td><td><span class="odds odds-s">9/2</span></td><td>MTO</td></tr>
     </tbody>
   </table></div>
-
-  <div class="callout"><p><strong>Prat leads the meet with 19 wins.</strong> Bounding Along nearly won her debut against easier company. Key Actress and Authentic Beauty go in the box via Favorite Filter — they're fine horses but too short to be on top. Small bet, don't overthink it.</p></div>
-
-  <div class="slabel">Bets · Race 1 · Small</div>
-  <div class="tgrid">
-    <div class="ticket main">
-      <div class="t-type">Exacta · Box</div>
-      <div class="t-name">Box #3, #6, #2, #9</div>
-      <div class="t-horses"><span class="th th-key">#3 Bounding Along</span><span class="th th-long">#6 Run on States</span><span class="th th-val">#2 Key Actress</span><span class="th th-val">#9 Authentic Beauty</span></div>
-      <div class="t-foot"><div class="t-cost">12 combos · $1<strong>$12.00</strong></div><div class="t-say">"Exacta box race 1, #3, #6, #2, #9, one dollar a combo"</div></div>
+  <div class="why" style="margin-top:12px;">Skip Rockabye (8-5). Box the four price horses. Quartz Mountain (Ward/Jose Ortiz) is HRN's pick. Pay Monthly by Golden Pal with Cox/Saez is a dangerous debut. Breaker (Pletcher/Prat) at 9-2 is always live.</div>
+  <div class="bets">
+    <div class="bet main">
+      <div class="bet-type">Exacta · Box</div>
+      <div class="horses"><span class="horse-tag ht-ls">#3 Quartz Mtn 5/2</span><span class="horse-tag ht-ls">#6 Pay Monthly 5/1</span><span class="horse-tag ht-ls">#4 Breaker 9/2</span><span class="horse-tag ht-ls">#2 Bolt Island 6/1</span></div>
+      <div class="bet-foot"><div class="cost">12 combos · $1<strong>$12</strong></div><div class="say">"Exacta box R1 #3 #6 #4 #2 one dollar"</div></div>
     </div>
   </div>
-  <div class="race-total"><div><div class="rt-label">Race 1 total · action only</div></div><div class="rt-amt">$12.00</div></div>
-  <div class="window"><div class="win-title">At the window</div>
-    <div class="wr"><div class="wtag wex">EX</div><div class="wsay">"Exacta box, race 1, #3, #6, #2, #9, one dollar a combo"</div><div class="wcost">$12</div></div>
-  </div>
+  <div class="race-total"><div class="rt-l">Race 1 total</div><div class="rt-r">$12</div></div>
 </div>
 
-<!-- ════════════════════════ RACE 2 ════════════════════════ -->
-
+<!-- ═══ R2 ═══ -->
 <div id="r2" class="race-pane">
-  <div class="race-header">
-    <div class="rh-left">
-      <div class="rnum-label">Race 2 · 1 1/16 Miles · Turf · Claiming $50K</div>
-      <div class="rname">Race 2 — <em>Turf Claiming</em></div>
-      <div class="rdetails">$65,000 purse · 3yo & up · MTO: First Call Bob enters if turf scratched</div>
-    </div>
-    <div class="rh-right"><div class="pt-label">Post</div><div class="pt">1:44 PM</div><div class="purse">$65,000</div></div>
+  <div class="rh">
+    <div class="rh-l"><div class="label">Race 2 · 6½F · Dirt · Claiming $12,500 · F&M 4yo+</div><div class="title">Claiming <em>Sprint</em></div><div class="sub">$37,000 · 7 runners · Bellacose (Cox/Franco) 9-5 favorite — skip her</div></div>
+    <div class="rh-r"><div class="post">1:43 PM</div><div class="purse">$37,000</div></div>
   </div>
-
-  <div class="spend-banner sml">
-    <div class="sb-label">Action Only</div>
-    <div class="sb-why">Turf claiming route. Blast Furnace (Prat/Maker) is the chalk. Small exacta only.</div>
-    <div class="sb-amt">$12</div>
-  </div>
-
-  <div class="slabel">Key Horses — Post Position Order (full field TBD at track)</div>
+  <div class="section-label">Full Field</div>
   <div class="tbl-wrap"><table>
-    <thead><tr><th>PP</th><th>Horse</th><th>ML</th><th>Trainer</th><th>Jockey</th><th>Signal</th></tr></thead>
+    <thead><tr><th>PP</th><th>Horse</th><th>Trainer · Jockey</th><th>ML</th><th>Formula</th></tr></thead>
     <tbody>
-      <tr class="pick"><td><span class="ppb g">3</span></td><td><div class="hname">Light Fantastic</div><div class="hmeta">Cox / <strong>Irad Ortiz Jr.</strong> · 6-1 · first off the claim for Cox · Irad enticed to ride second off a break · two turns question mark</div></td><td class="odds-c">6/1</td><td>Cox</td><td>Irad Ortiz Jr.</td><td><span class="sig sig-v">Value ★</span></td></tr>
-      <tr class="fav"><td><span class="ppb f">5</span></td><td><div class="hname">Blast Furnace <span class="tag tag-fav">Fav Filter</span></div><div class="hmeta">Maker / Prat · 3-1 · drops in class second off layoff · draw a line through last-out clunker</div></td><td class="odds-c">3/1</td><td>Maker</td><td>Prat</td><td><span class="sig sig-f">In box</span></td></tr>
-      <tr class="long"><td><span class="ppb l">6</span></td><td><div class="hname">Shangrala Road <span class="tag tag-long">Longshot</span></div><div class="hmeta">Rice / Lezcano · 8-1 · overdue for Linda Rice · deep barn angle at price</div></td><td class="odds-c">8/1</td><td>Rice</td><td>Lezcano</td><td><span class="sig sig-l">Longshot</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">8</span></td><td><div class="hname">Gun Barrel City</div><div class="hmeta">— / — · 5-1 · world-class pedigree hasn't lived up · softest spot in over a year · form vs better</div></td><td class="odds-c">5/1</td><td>—</td><td>—</td><td><span class="sig sig-v">Value</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">1</span></td><td><div class="hname">Curlin's Magic</div><div class="meta">Good Magic</div></td><td>Arenas · Rivera</td><td><span class="odds odds-s">8/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">2</span></td><td><div class="hname">Ah Ca Ira</div><div class="meta">Maximum Security · ran well in fast pace last out</div></td><td>Dixon · C. Elliott</td><td><span class="odds odds-ls">3/1</span></td><td><span class="badge badge-ls">Value</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">3</span></td><td><div class="hname">Miss Lao</div><div class="meta">Laoban · bobbled at start last time</div></td><td>Kantarmaci · Gonzalez</td><td><span class="odds odds-s">8/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">4</span></td><td><div class="hname">Short Shift</div><div class="meta">Nyquist · PRAT up · Ilkay Kantarmaci barn</div></td><td>I. Kantarmaci · Prat</td><td><span class="odds odds-ls">7/2</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">5</span></td><td><div class="hname">Open Soul Autism</div><div class="meta">Maximus Mischief</div></td><td>I. Kantarmaci · Harkie</td><td><span class="odds odds-s">10/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">6</span></td><td><div class="hname">Jackie the Joker</div><div class="meta">Practical Joke · Santana Jr. up · was setting fractions last time</div></td><td>Shivmangal · Santana Jr.</td><td><span class="odds odds-ls">6/1</span></td><td><span class="badge badge-ls">Longshot</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">7</span></td><td><div class="hname">Bellacose</div><div class="meta">Audible · Cox / Franco · FAVORITE — skip</div></td><td>B. Cox · Franco</td><td><span class="odds odds-s">9/5</span></td><td>Skip — chalk</td></tr>
     </tbody>
   </table></div>
-  <div class="icall"><p><strong>Note:</strong> Verify full field and post positions in your program. Light Fantastic at 6-1 with Cox/Irad is the biggest formula signal in this race — Cox took this horse for a reason.</p></div>
-
-  <div class="slabel">Bets · Race 2 · Small</div>
-  <div class="tgrid">
-    <div class="ticket main">
-      <div class="t-type">Exacta · Box</div>
-      <div class="t-name">Box #3 Light Fantastic, #5 Blast Furnace, #6 Shangrala, #8 Gun Barrel</div>
-      <div class="t-horses"><span class="th th-key">#3 Light Fantastic</span><span class="th th-val">#5 Blast Furnace</span><span class="th th-long">#6 Shangrala Road</span><span class="th th-long">#8 Gun Barrel City</span></div>
-      <div class="t-foot"><div class="t-cost">12 combos · $1<strong>$12.00</strong></div><div class="t-say">"Exacta box race 2, #3 #5 #6 #8, one dollar a combo"</div></div>
+  <div class="why" style="margin-top:12px;">Short Shift with Prat at 7-2 is the formula signal. Bellacose (9-5) is the chalk — skip entirely. Jackie the Joker (Santana, 6-1) has speed and could steal it.</div>
+  <div class="bets">
+    <div class="bet main">
+      <div class="bet-type">Exacta · Box</div>
+      <div class="horses"><span class="horse-tag ht-ls">#4 Short Shift 7/2</span><span class="horse-tag ht-ls">#6 Jackie the Joker 6/1</span><span class="horse-tag ht-ls">#2 Ah Ca Ira 3/1</span></div>
+      <div class="bet-foot"><div class="cost">6 combos · $1<strong>$6</strong></div><div class="say">"Exacta box R2 #4 #6 #2 one dollar"</div></div>
     </div>
   </div>
-  <div class="race-total"><div><div class="rt-label">Race 2 total · action only · verify PPs at track</div></div><div class="rt-amt">$12.00</div></div>
-  <div class="window"><div class="win-title">At the window</div>
-    <div class="wr"><div class="wtag wex">EX</div><div class="wsay">"Exacta box, race 2, #3, #5, #6, #8, one dollar a combo"</div><div class="wcost">$12</div></div>
-  </div>
+  <div class="race-total"><div class="rt-l">Race 2 total</div><div class="rt-r">$6</div></div>
 </div>
 
-<!-- ════════════════════════ RACE 3 ════════════════════════ -->
-
+<!-- ═══ R3 ═══ -->
 <div id="r3" class="race-pane">
-  <div class="race-header">
-    <div class="rh-left">
-      <div class="rnum-label">Race 3 · 7 Furlongs · Dirt · Claiming $25K</div>
-      <div class="rname">Race 3 — <em>Dirt Sprint Claiming</em></div>
-      <div class="rdetails">$37,000 purse · 4yo & up · Formula medium play · Irad + Sharp angle</div>
-    </div>
-    <div class="rh-right"><div class="pt-label">Post</div><div class="pt">2:19 PM</div><div class="purse">$37,000</div></div>
+  <div class="rh">
+    <div class="rh-l"><div class="label">Race 3 · 1⅛M · Dirt · Claiming $12,500 · 4yo+ Open</div><div class="title">Dirt Route <em>Claiming</em></div><div class="sub">$37,000 · 7 runners · Spoiler (Maker/Santana) 1-1 EVEN MONEY — skip completely</div></div>
+    <div class="rh-r"><div class="post">2:16 PM</div><div class="purse">$37,000</div></div>
   </div>
-
-  <div class="spend-banner med">
-    <div class="sb-label">Medium Play</div>
-    <div class="sb-why">Real Irad/Sharp signal. Mr. Skylight at 8-1 is the longshot the formula wants on top.</div>
-    <div class="sb-amt">$24</div>
-  </div>
-
-  <div class="slabel">Full Field — Post Position Order</div>
+  <div class="section-label">Full Field</div>
   <div class="tbl-wrap"><table>
-    <thead><tr><th>PP</th><th>Horse</th><th>ML</th><th>Trainer</th><th>Jockey</th><th>Signal</th></tr></thead>
+    <thead><tr><th>PP</th><th>Horse</th><th>Trainer · Jockey</th><th>ML</th><th>Formula</th></tr></thead>
     <tbody>
-      <tr class="fav"><td><span class="ppb f">1</span></td><td><div class="hname">Normandy Coast <span class="tag tag-fav">Fav Filter</span></div><div class="hmeta">Sharp / Irad Ortiz Jr. · 4-1 · was competing in stakes a year ago · massive class drop · alarming at this level</div></td><td class="odds-c">4/1</td><td>Sharp</td><td>Irad Ortiz Jr.</td><td><span class="sig sig-f">In box only</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">2</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">3</span></td><td><div class="hname">Norwich</div><div class="hmeta">Maker / Santana Jr. · 9-2 · Maker/Santana combination solid at this level · honest form</div></td><td class="odds-c">9/2</td><td>Maker</td><td>Santana Jr.</td><td><span class="sig sig-v">Value ★</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">4</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">5</span></td><td><div class="hname">Three Little Birds</div><div class="hmeta">Baker / — · 12-1 · back down to claimers · needs dry track · mid pack</div></td><td class="odds-c">12/1</td><td>Baker</td><td>—</td><td><span class="sig sig-s">Skip</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">6</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="bomb"><td><span class="ppb b">7</span></td><td><div class="hname">Mr Skylight <span class="tag tag-bomb">Bomb ⚡</span></div><div class="hmeta">— / — · 8-1 · formula longshot · drops to right level · doesn't need lead · coming on late</div></td><td class="odds-c">8/1</td><td>—</td><td>—</td><td><span class="sig sig-b">Bomb ⚡</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">8</span></td><td><div class="hname">Sheriff Bianco</div><div class="hmeta">Rice / Franco · 6-1 · big jockey upgrade to Franco · Rice barn first off claim</div></td><td class="odds-c">6/1</td><td>Rice</td><td>Franco</td><td><span class="sig sig-l">Longshot</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">9</span></td><td><div class="hname">Hey Toby</div><div class="hmeta">— / — · 6-1 · has run well at this level multiple times · OK 4th against allowance foes in May · prefers stalking trip</div></td><td class="odds-c">6/1</td><td>—</td><td>—</td><td><span class="sig sig-v">Value ★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">1</span></td><td><div class="hname">Interlock Empire</div><div class="meta">Classic Empire · 106 fig · first off the claim for Noda</div></td><td>O. Noda · C. Elliott</td><td><span class="odds odds-ls">4/1</span></td><td><span class="badge badge-ls">Value</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">2</span></td><td><div class="hname">Shipsational</div><div class="meta">Midshipman · 110 fig · drops way down from $50K level</div></td><td>R. Atras · D. Davis</td><td><span class="odds odds-ls">8/1</span></td><td><span class="badge badge-ls">Longshot ★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">3</span></td><td><div class="hname">Amedeus Music</div><div class="meta">Dialed In · 99 fig</div></td><td>W. Potts · Zayas</td><td><span class="odds odds-s">15/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">4</span></td><td><div class="hname">Expensive Cut</div><div class="meta">Karakontie · 89 fig</div></td><td>M. Kantarmaci · Gonzalez</td><td><span class="odds odds-s">10/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">5</span></td><td><div class="hname">Spoiler</div><div class="meta">First Samurai · Maker / Santana · EVEN MONEY — skip</div></td><td>M. Maker · Santana Jr.</td><td><span class="odds odds-s">1/1</span></td><td>Skip — chalk</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">6</span></td><td><div class="hname">Fever Night</div><div class="meta">Curlin · 112 fig · Rice / Lezcano · 2-race win streak</div></td><td>L. Rice · Lezcano</td><td><span class="odds odds-ls">5/1</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="bomb"><td><span class="pp pp-b">7</span></td><td><div class="hname">Polar Bear Plunge</div><div class="meta">English Channel · turf bred · Kantarmaci / FRANCO · 6-1 · FORMULA BOMB</div></td><td>M. Kantarmaci · Franco</td><td><span class="odds odds-b">6/1</span></td><td><span class="badge badge-b">BOMB ⚡</span></td></tr>
     </tbody>
   </table></div>
-
-  <div class="callout"><p><strong>Mr. Skylight at 8-1 is the formula's key longshot today.</strong> Normandy Coast (Irad/Sharp) is the obvious play but is alarming on a gigantic class drop — the price will be short and the red flags are real. Hey Toby at 6-1 has run well here twice. The formula puts Mr. Skylight on top with Normandy Coast in the box underneath via Favorite Filter. If Skylight fires this pays well.</p></div>
-
-  <div class="slabel">Bets · Race 3 · Medium</div>
-  <div class="tgrid">
-    <div class="ticket main">
-      <div class="t-type">Trifecta · Box</div>
-      <div class="t-name">Box #7 Mr Skylight, #9 Hey Toby, #3 Norwich, #1 Normandy Coast, #8 Sheriff Bianco</div>
-      <div class="t-horses"><span class="th th-bomb">#7 Mr Skylight ⚡</span><span class="th th-key">#9 Hey Toby</span><span class="th th-val">#3 Norwich</span><span class="th th-long">#8 Sheriff Bianco</span><span class="th th-ls">#1 Normandy Coast</span></div>
-      <div class="t-foot"><div class="t-cost">60 combos · $0.20<strong>$12.00</strong></div><div class="t-say">"Trifecta box race 3, #7 #9 #3 #8 #1, twenty cents a combo"</div></div>
-    </div>
-    <div class="ticket">
-      <div class="t-type">Exacta · Box</div>
-      <div class="t-name">Box #7, #9, #3, #8</div>
-      <div class="t-horses"><span class="th th-bomb">#7</span><span class="th th-key">#9</span><span class="th th-val">#3</span><span class="th th-long">#8</span></div>
-      <div class="t-foot"><div class="t-cost">12 combos · $1<strong>$12.00</strong></div><div class="t-say">"Exacta box race 3, #7 #9 #3 #8, one dollar a combo"</div></div>
+  <div class="note"><p><strong>Polar Bear Plunge at 6-1 with Manuel Franco</strong> is the bomb play. English Channel sire, drops to a spot where his turf-bred form fits in a dirt route at the bottom of the card. The trifecta box of #7 / #6 / #2 / #1 at $0.50 catches the payout if any combination of these four hit. Spoiler at even money is impossible to make money on — leave him out entirely.</p></div>
+  <div class="bets">
+    <div class="bet main">
+      <div class="bet-type">Trifecta · Box · No Spoiler</div>
+      <div class="horses"><span class="horse-tag ht-b">#7 Polar Bear 6/1 ⚡</span><span class="horse-tag ht-ls">#6 Fever Night 5/1</span><span class="horse-tag ht-ls">#2 Shipsational 8/1</span><span class="horse-tag ht-ls">#1 Interlock 4/1</span></div>
+      <div class="bet-foot"><div class="cost">24 combos · $0.50<strong>$12</strong></div><div class="say">"Trifecta box R3 #7 #6 #2 #1 fifty cents"</div></div>
     </div>
   </div>
-  <div class="race-total"><div><div class="rt-label">Race 3 total · medium play · Mr Skylight 8-1 on top</div></div><div class="rt-amt">$24.00</div></div>
-  <div class="window"><div class="win-title">At the window</div>
-    <div class="wr"><div class="wtag wtri">TRI</div><div class="wsay">"Trifecta box, race 3, #7, #9, #3, #8, #1, twenty cents a combo"</div><div class="wcost">$12</div></div>
-    <div class="wr"><div class="wtag wex">EX</div><div class="wsay">"Exacta box, race 3, #7, #9, #3, #8, one dollar a combo"</div><div class="wcost">$12</div></div>
-  </div>
+  <div class="race-total"><div class="rt-l">Race 3 total · Spoiler excluded</div><div class="rt-r">$12</div></div>
 </div>
 
-<!-- ════════════════════════ RACE 4 ════════════════════════ -->
-
+<!-- ═══ R4 ═══ -->
 <div id="r4" class="race-pane">
-  <div class="race-header">
-    <div class="rh-left">
-      <div class="rnum-label">Race 4 · 1 1/8 Miles · Turf · Allowance Optional Claiming $80K</div>
-      <div class="rname">Race 4 — <em>Turf Route Allowance</em></div>
-      <div class="rdetails">$130,000 purse · 4yo & up · Spirit of St. Louis (Cox/Franco, 2-1) expected to dominate pool · $99K Pick 6 starts this race</div>
-    </div>
-    <div class="rh-right"><div class="pt-label">Post</div><div class="pt">2:54 PM</div><div class="purse">$130,000</div></div>
+  <div class="rh">
+    <div class="rh-l"><div class="label">Race 4 · 6½F · Dirt · Starter Optional Claiming $16K · 4yo+</div><div class="title">Starter Optional <em>Claiming</em></div><div class="sub">$45,000 · 8 runners · Shoot the Nickel (Rice/Prat) 5-2 is the value play</div></div>
+    <div class="rh-r"><div class="post">2:49 PM</div><div class="purse">$45,000</div></div>
   </div>
-
-  <div class="spend-banner sml">
-    <div class="sb-label">Action Only</div>
-    <div class="sb-why">Spirit of St. Louis (Cox/Franco, 2-1) will be hammered. Can't make money keying him. Small spread bet on the horses that can beat him.</div>
-    <div class="sb-amt">$6</div>
-  </div>
-
-  <div class="slabel">Key Horses — Verify full field at track</div>
+  <div class="section-label">Full Field</div>
   <div class="tbl-wrap"><table>
-    <thead><tr><th>PP</th><th>Horse</th><th>ML</th><th>Trainer</th><th>Jockey</th><th>Signal</th></tr></thead>
+    <thead><tr><th>PP</th><th>Horse</th><th>Trainer · Jockey</th><th>ML</th><th>Formula</th></tr></thead>
     <tbody>
-      <tr class="fav"><td><span class="ppb f">2</span></td><td><div class="hname">Spirit of St. Louis <span class="tag tag-fav">Fav Filter</span></div><div class="hmeta">Cox / Franco · 2-1 · two-time G1 winner · chased Mi Bago who then beat graded stakes foes · still very good · pool will be saturated</div></td><td class="odds-c">2/1</td><td>Cox</td><td>Franco</td><td><span class="sig sig-f">In box underneath</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">5</span></td><td><div class="hname">Salamis</div><div class="hmeta">Brown / Prat · 5-2 · second half of Brown 1-2 punch · won't go favored · Prat may have had other options but chose this one</div></td><td class="odds-c">5/2</td><td>Brown</td><td>Prat</td><td><span class="sig sig-v">Value ★</span></td></tr>
-      <tr class="long"><td><span class="ppb l">6</span></td><td><div class="hname">Sea Singer <span class="tag tag-long">Longshot</span></div><div class="hmeta">— / — · 10-1 · had right to need return to races last time · not too bad beaten 3 lengths · more fit here · could grab a piece at price</div></td><td class="odds-c">10/1</td><td>—</td><td>—</td><td><span class="sig sig-l">Longshot</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">MTO</span></td><td><div class="hname">Vibe (MTO)</div><div class="hmeta">Scratches if turf is taken off. Check board before betting.</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">MTO</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">1</span></td><td><div class="hname">Norwich</div><div class="meta">Munnings · 101 fig · won last · rail post</div></td><td>F. Abreu · Santana Jr.</td><td><span class="odds odds-ls">3/1</span></td><td><span class="badge badge-ls">Value</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">2</span></td><td><div class="hname">Princip</div><div class="meta">Violence · 102 fig</div></td><td>M. Kantarmaci · Castellano</td><td><span class="odds odds-s">8/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">3</span></td><td><div class="hname">Kunshan Bridge</div><div class="meta">Protonico · 93 fig</div></td><td>M. Kantarmaci · Franco</td><td><span class="odds odds-s">6/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">4</span></td><td><div class="hname">Graywing</div><div class="meta">Graydar · 62 fig · 30-1 · skip</div></td><td>E. Jones · Villa Pino</td><td><span class="odds odds-s">30/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">5</span></td><td><div class="hname">Tizmarkus</div><div class="meta">Tamarkuz · 97 fig</div></td><td>J. Ferraro · Lezcano</td><td><span class="odds odds-s">4/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">6</span></td><td><div class="hname">Shoot the Nickel</div><div class="meta">Violence · 100 fig · Rice / PRAT · closing style · almost caught Norwich last time</div></td><td>L. Rice · Prat</td><td><span class="odds odds-ls">5/2</span></td><td><span class="badge badge-ls">Value ★★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">7</span></td><td><div class="hname">Timaeus</div><div class="meta">Malibu Moon · 91 fig · 15-1</div></td><td>I. Kantarmaci · Gonzalez</td><td><span class="odds odds-s">15/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">8</span></td><td><div class="hname">Normandy Coast</div><div class="meta">Omaha Beach · 121 fig · Falcone / Saez · first off claim · outside post</div></td><td>Falcone Jr. · Saez</td><td><span class="odds odds-ls">4/1</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
     </tbody>
   </table></div>
-
-  <div class="warn"><p><strong>The trap race.</strong> Spirit of St. Louis is a legitimate two-time Grade 1 winner and will win this. But at 2-1 the exacta with any horse pays maybe $7-10. A $130K allowance trifecta where the 2-1 shot runs first pays $15-25 at best. This is not where we make money today. Salamis (Prat, 5-2) is the only realistic upset threat. Bet small and move on.</p></div>
-
-  <div class="slabel">Bets · Race 4 · Minimal</div>
-  <div class="tgrid">
-    <div class="ticket main">
-      <div class="t-type">Exacta · Box · Minimum</div>
-      <div class="t-name">Box #5 Salamis, #6 Sea Singer — Beat the chalk</div>
-      <div class="t-horses"><span class="th th-key">#5 Salamis</span><span class="th th-long">#6 Sea Singer</span><span class="th th-val">#2 Spirit of St. Louis</span></div>
-      <div class="t-foot"><div class="t-cost">6 combos · $1<strong>$6.00</strong></div><div class="t-say">"Exacta box race 4, #5 #6 #2, one dollar a combo"</div></div>
+  <div class="why" style="margin-top:12px;">Shoot the Nickel (Prat, 5-2) and Normandy Coast (Saez, 4-1) are the two live price horses. Small race, keep it cheap — just an exacta box.</div>
+  <div class="bets">
+    <div class="bet main">
+      <div class="bet-type">Exacta · Box</div>
+      <div class="horses"><span class="horse-tag ht-ls">#6 Shoot the Nickel 5/2</span><span class="horse-tag ht-ls">#8 Normandy Coast 4/1</span><span class="horse-tag ht-ls">#1 Norwich 3/1</span></div>
+      <div class="bet-foot"><div class="cost">6 combos · $1<strong>$6</strong></div><div class="say">"Exacta box R4 #6 #8 #1 one dollar"</div></div>
     </div>
   </div>
-  <div class="race-total"><div><div class="rt-label">Race 4 total · absolute minimum · verify field at track</div></div><div class="rt-amt">$6.00</div></div>
-  <div class="window"><div class="win-title">At the window</div>
-    <div class="wr"><div class="wtag wex">EX</div><div class="wsay">"Exacta box, race 4, #5, #6, #2, one dollar a combo"</div><div class="wcost">$6</div></div>
-  </div>
+  <div class="race-total"><div class="rt-l">Race 4 total · minimum</div><div class="rt-r">$6</div></div>
 </div>
 
-<!-- ════════════════════════ RACE 5 ════════════════════════ -->
-
+<!-- ═══ R5 ═══ -->
 <div id="r5" class="race-pane">
-  <div class="race-header">
-    <div class="rh-left">
-      <div class="rnum-label">Race 5 · 5½ Furlongs · Turf · Maiden Special Weight</div>
-      <div class="rname">Race 5 — <em>2-Year-Old Turf Maiden</em></div>
-      <div class="rdetails">$90,000 purse · 2yo fillies · First-time starters & lightly raced · JACKPOT RACE #1</div>
-    </div>
-    <div class="rh-right"><div class="pt-label">Post</div><div class="pt">3:29 PM</div><div class="purse">$90,000</div></div>
+  <div class="rh">
+    <div class="rh-l"><div class="label">Race 5 · 1 1/16M · Inner Turf · Maiden Special Weight · 2yo Fillies</div><div class="title">⚡ 2yo Inner Turf <em>Maiden</em></div><div class="sub">$115,000 · 12 runners · Mandy Steph (Clement/Franco) 7-2 bet down · JACKPOT RACE</div></div>
+    <div class="rh-r"><div class="post">3:23 PM</div><div class="purse">$115,000</div></div>
   </div>
-
-  <div class="spend-banner hot">
-    <div class="sb-label">⚡ Jackpot Race — Big Money</div>
-    <div class="sb-why">2yo turf maiden with first-timers. Superfectas pay $200–2,000+. Most of our budget goes here.</div>
-    <div class="sb-amt">$48</div>
-  </div>
-
-  <div class="slabel">Full Field — Post Position Order</div>
+  <div class="section-label">Full Field</div>
   <div class="tbl-wrap"><table>
-    <thead><tr><th>PP</th><th>Horse</th><th>ML</th><th>Trainer</th><th>Jockey</th><th>Signal</th></tr></thead>
+    <thead><tr><th>PP</th><th>Horse</th><th>Trainer · Jockey</th><th>ML</th><th>Formula</th></tr></thead>
     <tbody>
-      <tr class="fade"><td><span class="ppb n">1</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">2</span></td><td><div class="hname">Quoted</div><div class="hmeta">Casse / — · 6-1 · Casse barn hot this meet (6 wins) · only 3 published works (question mark) · Street Sense × War Front mare = excellent turf breeding</div></td><td class="odds-c">6/1</td><td>Casse</td><td>—</td><td><span class="sig sig-v">Value ★</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">3</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">4</span></td><td><div class="hname">Cadillac Mary</div><div class="hmeta">— / — · 7/2 · decent third in debut, winner returned to win again · runner-up also won next start · moves forward second time</div></td><td class="odds-c">7/2</td><td>—</td><td>—</td><td><span class="sig sig-v">Value ★</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">5</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">6</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">7</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">8</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">9</span></td><td><div class="hname">Side Quest <span class="tag tag-irad">IRAD</span></div><div class="hmeta">Walden / Irad Ortiz Jr. · 3-1 · difficult debut trip · blinkers added (Walden 11-for-33 with blinker-ons, $3.16 ROI) · The Factor broodmare sire = strong turf influence · formula top pick</div></td><td class="odds-c">3/1</td><td>Walden</td><td>Irad Ortiz Jr.</td><td><span class="sig sig-vv">Value ★★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">1</span></td><td><div class="hname">Royal County Down</div><div class="meta">Audible · Walsh / Velazquez · sister to 4 Saratoga stakes winners</div></td><td>B. Walsh · Velazquez</td><td><span class="odds odds-ls">5/1</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">2</span></td><td><div class="hname">Bluegrass Princess</div><div class="meta">Tiz the Law · McPeek / Jose Ortiz · debut on dirt (troubled) → switches to turf · bred for grass</div></td><td>K. McPeek · Jose Ortiz</td><td><span class="odds odds-ls">4/1</span></td><td><span class="badge badge-ls">Value ★★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">3</span></td><td><div class="hname">Bittersweet Memory</div><div class="meta">The Factor · 86 fig · Danner / Saez</div></td><td>K. Danner · Saez</td><td><span class="odds odds-ls">8/1</span></td><td><span class="badge badge-ls">Longshot</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">4</span></td><td><div class="hname">Hunter Creek</div><div class="meta">War Front · 71 fig · 15-1</div></td><td>T. Proctor · K. Davis</td><td><span class="odds odds-s">15/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">5</span></td><td><div class="hname">Amelia in Air</div><div class="meta">Quality Road · 75 fig · 12-1</div></td><td>Beckman · Zayas</td><td><span class="odds odds-s">12/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">6</span></td><td><div class="hname">Sellonthenews (GB)</div><div class="meta">Lope de Vega · Brown / PRAT · 9-2 · Juddmonte pedigree · 22% debut sire</div></td><td>C. Brown · Prat</td><td><span class="odds odds-ls">9/2</span></td><td><span class="badge badge-ls">Value ★★</span></td></tr>
+      <tr class="bomb"><td><span class="pp pp-b">7</span></td><td><div class="hname">Harpoon</div><div class="meta">Cyberknife · Casse / Castellano · 20-1 · SUPERFECTA BOMB</div></td><td>M. Casse · Castellano</td><td><span class="odds odds-b">20/1</span></td><td><span class="badge badge-b">BOMB ⚡</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">8</span></td><td><div class="hname">Harmony Mill</div><div class="meta">Liam's Map · 87 fig · 12-1</div></td><td>R. Handal · D. Davis</td><td><span class="odds odds-s">12/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">9</span></td><td><div class="hname">Celebrate</div><div class="meta">Medaglia d'Oro · Pletcher / Santana · 6-1 · Pletcher 2yo barn always live</div></td><td>Pletcher · Santana Jr.</td><td><span class="odds odds-ls">6/1</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">10</span></td><td><div class="hname">Mandy Steph</div><div class="meta">Constitution · Clement / Franco · 7-2 · bet down from ML · skip — chalk</div></td><td>Clement · Franco</td><td><span class="odds odds-s">7/2</span></td><td>Skip — chalk</td></tr>
+      <tr class="bomb"><td><span class="pp pp-b">11</span></td><td><div class="hname">Funny Words</div><div class="meta">Omaha Beach · Ryerson / Lezcano · 12-1 · MTO (main track only)</div></td><td>J. Ryerson · Lezcano</td><td><span class="odds odds-b">12/1</span></td><td>MTO Bomb</td></tr>
+      <tr class="bomb"><td><span class="pp pp-b">12</span></td><td><div class="hname">Revenge of the Sis</div><div class="meta">Girvin · Weaver / Velazquez · 3-1 · MTO (main track only) · Weaver/Velazquez live if turf off</div></td><td>G. Weaver · Velazquez</td><td><span class="odds odds-b">3/1</span></td><td>MTO Bomb</td></tr>
     </tbody>
   </table></div>
-
-  <div class="pcall"><p><strong>This is Jackpot Race #1.</strong> Irad picks Side Quest for Will Walden — and Walden's blinker-on stat (33% hit rate, $3.16 ROI) is exceptional. Quoted by Casse with elite turf breeding is the second pick. Cadillac Mary has solid debut form with horses that came back to win. The key is the <em>superfecta</em>. At 120 combos × $0.10 = $12, a single $0.10 superfecta with a 10-1 longshot in 4th can pay $300–2,000. That is the bet of the day. When you get to the paddock, look for the longest-priced horse with a recognizable jockey or trainer and add them to your super box as the fifth horse.</p></div>
-
-  <div class="slabel">Bets · Race 5 · Big Money</div>
-  <div class="tgrid">
-    <div class="ticket main">
-      <div class="t-type">Trifecta · Box</div>
-      <div class="t-name">Box #9 Side Quest, #4 Cadillac Mary, #2 Quoted + best longshot at track</div>
-      <div class="t-horses"><span class="th th-key">#9 Side Quest</span><span class="th th-val">#4 Cadillac Mary</span><span class="th th-long">#2 Quoted</span><span class="th th-ls">+1 longshot</span></div>
-      <div class="t-foot"><div class="t-cost">24 combos · $1<strong>$24.00</strong></div><div class="t-say">"Trifecta box race 5, #9 #4 #2 [+PP], one dollar a combo"</div></div>
+  <div class="note"><p><strong>This is the jackpot race.</strong> Sellonthenews (Brown/Prat, 9-2) and Bluegrass Princess (McPeek/Jose Ortiz, 4-1) are the two strongest plays. Harpoon at 20-1 (Casse/Castellano) is the superfecta bomb — Casse fires 2yo firsters constantly. Add Harpoon to the super as the 5th horse. Mandy Steph has been bet down to 7-2 and is skipped — the pool is already saturated. Skip all MTO horses unless turf is taken off.</p></div>
+  <div class="bets">
+    <div class="bet main">
+      <div class="bet-type">Trifecta · Box · No Chalk</div>
+      <div class="horses"><span class="horse-tag ht-ls">#6 Sellonthenews 9/2</span><span class="horse-tag ht-ls">#2 Bluegrass Pr 4/1</span><span class="horse-tag ht-ls">#9 Celebrate 6/1</span><span class="horse-tag ht-ls">#1 Royal County 5/1</span><span class="horse-tag ht-ls">#3 Bittersweet 8/1</span></div>
+      <div class="bet-foot"><div class="cost">60 combos · $0.20<strong>$12</strong></div><div class="say">"Trifecta box R5 #6 #2 #9 #1 #3 twenty cents"</div></div>
     </div>
-    <div class="ticket bomb-t">
-      <div class="t-type">Superfecta · 5-horse bomb · $0.10</div>
-      <div class="t-name">Box #9, #4, #2, + 2 longest-price horses with live trainers</div>
-      <div class="t-horses"><span class="th th-key">#9 Side Quest</span><span class="th th-val">#4 Cadillac Mary</span><span class="th th-long">#2 Quoted</span><span class="th th-bomb">+bomb 1 ⚡</span><span class="th th-bomb">+bomb 2 ⚡</span></div>
-      <div class="t-foot"><div class="t-cost">120 combos · $0.10 · THIS IS THE BET<strong>$12.00</strong></div><div class="t-say">"Superfecta box race 5, #9 #4 #2 [+2 longshots], ten cents a combo"</div></div>
+    <div class="bet sup">
+      <div class="bet-type">Superfecta · 5 horses · $0.10</div>
+      <div class="horses"><span class="horse-tag ht-ls">#6 Sellonthenews</span><span class="horse-tag ht-ls">#2 Bluegrass Pr</span><span class="horse-tag ht-ls">#9 Celebrate</span><span class="horse-tag ht-ls">#1 Royal County</span><span class="horse-tag ht-b">#7 Harpoon 20/1 ⚡</span></div>
+      <div class="bet-foot"><div class="cost">120 combos · $0.10<strong>$12</strong></div><div class="say">"Superfecta box R5 #6 #2 #9 #1 #7 ten cents"</div></div>
     </div>
   </div>
-  <div class="callout"><p><strong>At the paddock before Race 5:</strong> Look at each horse's odds on the tote board. Find the two horses priced 10-1 or higher that have a recognizable trainer or jockey. Add those two as your superfecta bombs. The $12 super at $0.10 base covers 120 combinations — if any 10-1+ horse sneaks into 4th behind our three core picks, this pays an enormous number.</p></div>
-  <div class="race-total"><div><div class="rt-label">Race 5 total · JACKPOT RACE · trifecta + superfecta</div></div><div class="rt-amt">$48.00</div></div>
-  <div class="window"><div class="win-title">At the window</div>
-    <div class="wr"><div class="wtag wtri">TRI</div><div class="wsay">"Trifecta box, race 5, #9, #4, #2, [+PP of longshot], one dollar a combo"</div><div class="wcost">$24</div></div>
-    <div class="wr"><div class="wtag wsup">SUP ⚡</div><div class="wsay">"Superfecta box, race 5, #9, #4, #2, [+2 longshot PPs], ten cents a combo"</div><div class="wcost">$12+</div></div>
-  </div>
+  <div class="race-total"><div class="rt-l">Race 5 total · JACKPOT · trifecta + superfecta</div><div class="rt-r">$24</div></div>
 </div>
 
-<!-- ════════════════════════ RACE 6 ════════════════════════ -->
-
+<!-- ═══ R6 ═══ -->
 <div id="r6" class="race-pane">
-  <div class="race-header">
-    <div class="rh-left">
-      <div class="rnum-label">Race 6 · 6 Furlongs · Dirt · Claiming $20K</div>
-      <div class="rname">Race 6 — <em>Dirt Sprint Claiming</em></div>
-      <div class="rdetails">$43,000 purse · 3yo & up · Ancient World 8-5 is the chalk — we beat him</div>
-    </div>
-    <div class="rh-right"><div class="pt-label">Post</div><div class="pt">4:04 PM</div><div class="purse">$43,000</div></div>
+  <div class="rh">
+    <div class="rh-l"><div class="label">Race 6 · 6½F · Dirt · Maiden Special Weight · 2yo Colts</div><div class="title">2yo Colts Dirt <em>Maiden</em></div><div class="sub">$115,000 · 11 runners · Freedom Charge (Asmussen/Jose Ortiz) 7-2 · Five Grand (Weaver/Prat) 6-1</div></div>
+    <div class="rh-r"><div class="post">3:57 PM</div><div class="purse">$115,000</div></div>
   </div>
-
-  <div class="spend-banner sml">
-    <div class="sb-label">Action Only</div>
-    <div class="sb-why">Ancient World (8-5) is a puzzle — was in stakes last year, massive class drop, red flags at short price. We beat him with Tapwrits Temper and Nantz.</div>
-    <div class="sb-amt">$6</div>
-  </div>
-
-  <div class="slabel">Key Horses — Post Position Order</div>
+  <div class="section-label">Full Field</div>
   <div class="tbl-wrap"><table>
-    <thead><tr><th>PP</th><th>Horse</th><th>ML</th><th>Trainer</th><th>Jockey</th><th>Signal</th></tr></thead>
+    <thead><tr><th>PP</th><th>Horse</th><th>Trainer · Jockey</th><th>ML</th><th>Formula</th></tr></thead>
     <tbody>
-      <tr class="fade"><td><span class="ppb n">1</span></td><td><div class="hname">Ancient World <span class="tag tag-skip">Skip</span></div><div class="hmeta">Into Mischief · 8-5 · was in stakes a year ago · 10-month layoff · drops to $20K tag · alarming red flags · we beat him</div></td><td class="odds-c">8/5</td><td>—</td><td>—</td><td><span class="sig sig-skip">Skip</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">4</span></td><td><div class="hname">Nantz</div><div class="hmeta">— / — · 8-1 · wide last time first start for barn · improves getting ground · doesn't need lead · value at 8-1</div></td><td class="odds-c">8/1</td><td>—</td><td>—</td><td><span class="sig sig-v">Value ★</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">5</span></td><td><div class="hname">Three Little Birds</div><div class="hmeta">Baker · 12-1 · needs dry track · back down to claimers</div></td><td class="odds-c">12/1</td><td>Baker</td><td>—</td><td><span class="sig sig-s">Skip</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">9</span></td><td><div class="hname">Schlomo</div><div class="hmeta">— / — · 5-1 · good record in the money · 4 for 4 hitting board at this distance · needs dry track</div></td><td class="odds-c">5/1</td><td>—</td><td>—</td><td><span class="sig sig-l">Monitor</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">10</span></td><td><div class="hname">Tapwrits Temper</div><div class="hmeta">— / — · 8-1 · removed blinkers last time → rated and drew away by 6+ lengths · plenty of speed in field · ideal trip sitting off pace</div></td><td class="odds-c">8/1</td><td>—</td><td>—</td><td><span class="sig sig-vv">Value ★★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">1</span></td><td><div class="hname">Dominicgofriskem</div><div class="meta">Practical Joke · 20-1</div></td><td>Bartkowski · Lezcano</td><td><span class="odds odds-s">20/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">2</span></td><td><div class="hname">Themistocles</div><div class="meta">Vekoma · Maker / D. Davis · 12-1</div></td><td>M. Maker · D. Davis</td><td><span class="odds odds-s">12/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">3</span></td><td><div class="hname">Ed Charles</div><div class="meta">Keepmeinmind · 42 fig · 15-1</div></td><td>Englehart · Alvarado</td><td><span class="odds odds-s">15/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">4</span></td><td><div class="hname">Just You Baby</div><div class="meta">King for a Day · Abreu / Santana · 10-1 · $100K purchase · great debut barn</div></td><td>J. Abreu · Santana Jr.</td><td><span class="odds odds-ls">10/1</span></td><td><span class="badge badge-ls">Longshot ★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">5</span></td><td><div class="hname">Comical Mischief</div><div class="meta">Honest Mischief · 15-1</div></td><td>M. Ferraro · Coa</td><td><span class="odds odds-s">15/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">6</span></td><td><div class="hname">Mr Rigatoni</div><div class="meta">Warrior's Charge · 15-1</div></td><td>I. Kantarmaci · Castellano</td><td><span class="odds odds-s">15/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">7</span></td><td><div class="hname">Freedom Charge</div><div class="meta">Jackie's Warrior · 82 fig · Asmussen / Jose Ortiz · 7-2 · big connection</div></td><td>Asmussen · Jose Ortiz</td><td><span class="odds odds-ls">7/2</span></td><td><span class="badge badge-ls">Value ★★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">8</span></td><td><div class="hname">Five Grand</div><div class="meta">Vekoma · Weaver / PRAT · 6-1 · Weaver/Prat debut = dangerous</div></td><td>G. Weaver · Prat</td><td><span class="odds odds-ls">6/1</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">9</span></td><td><div class="hname">McMoon</div><div class="meta">McKinzie · 86 fig · Weaver / Zayas · 4-1 · 2nd start improves for Weaver</div></td><td>G. Weaver · Zayas</td><td><span class="odds odds-ls">4/1</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">10</span></td><td><div class="hname">Maximilian</div><div class="meta">Maxfield · 79 fig · 6-1</div></td><td>J. Orseno · Saez</td><td><span class="odds odds-s">6/1</span></td><td>Skip</td></tr>
+      <tr class="bomb"><td><span class="pp pp-b">11</span></td><td><div class="hname">Hammerin Henry</div><div class="meta">Cyberknife · Cox / FRANCO · 5-1 · chased 3-wide debut · Cox/Franco always dangerous</div></td><td>B. Cox · Franco</td><td><span class="odds odds-b">5/1</span></td><td><span class="badge badge-b">Bomb ⚡</span></td></tr>
     </tbody>
   </table></div>
-
-  <div class="callout"><p><strong>Tapwrits Temper at 8-1 is the formula's top pick.</strong> Removed blinkers → rated → won by six lengths. Now faces pace horses who like to be on the lead. Could sit a perfect trip and pounce. Ancient World absolutely puzzles the experts — short price with red flags everywhere. Skip him entirely. Small bet, move on to Race 7.</p></div>
-
-  <div class="slabel">Bets · Race 6 · Minimal</div>
-  <div class="tgrid">
-    <div class="ticket main">
-      <div class="t-type">Exacta · Box</div>
-      <div class="t-name">Box #10 Tapwrits Temper, #4 Nantz, #9 Schlomo</div>
-      <div class="t-horses"><span class="th th-key">#10 Tapwrits Temper</span><span class="th th-val">#4 Nantz</span><span class="th th-long">#9 Schlomo</span></div>
-      <div class="t-foot"><div class="t-cost">6 combos · $1<strong>$6.00</strong></div><div class="t-say">"Exacta box race 6, #10 #4 #9, one dollar a combo"</div></div>
+  <div class="why" style="margin-top:12px;">Freedom Charge (Asmussen/Jose Ortiz, 7-2) and Hammerin Henry (Cox/Franco, 5-1) are the two barn/jock signals. Five Grand (Weaver/Prat, 6-1) is a debut play. Just You Baby (Abreu/Santana, 10-1) with a $100K purchase price is worth a spot in the trifecta.</div>
+  <div class="bets">
+    <div class="bet main">
+      <div class="bet-type">Trifecta · Box</div>
+      <div class="horses"><span class="horse-tag ht-ls">#7 Freedom Charge 7/2</span><span class="horse-tag ht-b">#11 Hammerin Henry 5/1 ⚡</span><span class="horse-tag ht-ls">#8 Five Grand 6/1</span><span class="horse-tag ht-ls">#9 McMoon 4/1</span></div>
+      <div class="bet-foot"><div class="cost">24 combos · $0.50<strong>$12</strong></div><div class="say">"Trifecta box R6 #7 #11 #8 #9 fifty cents"</div></div>
     </div>
   </div>
-  <div class="race-total"><div><div class="rt-label">Race 6 total · absolute minimum · Ancient World skipped entirely</div></div><div class="rt-amt">$6.00</div></div>
-  <div class="window"><div class="win-title">At the window</div>
-    <div class="wr"><div class="wtag wex">EX</div><div class="wsay">"Exacta box, race 6, #10, #4, #9, one dollar a combo"</div><div class="wcost">$6</div></div>
-  </div>
+  <div class="race-total"><div class="rt-l">Race 6 total</div><div class="rt-r">$12</div></div>
 </div>
 
-<!-- ════════════════════════ RACE 7 ════════════════════════ -->
-
+<!-- ═══ R7 ═══ -->
 <div id="r7" class="race-pane">
-  <div class="race-header">
-    <div class="rh-left">
-      <div class="rnum-label">Race 7 · 1 1/16 Miles · Turf · NY-Bred Fillies Stakes</div>
-      <div class="rname"><em>Suzie O'Cain Stakes</em></div>
-      <div class="rdetails">$200,000 purse · 8 NY-bred fillies · 3yo · Feature race of the day · JACKPOT RACE #2</div>
-    </div>
-    <div class="rh-right"><div class="pt-label">Post</div><div class="pt">4:39 PM</div><div class="purse">$200,000</div></div>
+  <div class="rh">
+    <div class="rh-l"><div class="label">Race 7 · 1 1/16M · Turf · West Point Stakes · NY-Bred · 3yo+</div><div class="title"><em>West Point Stakes</em> $200K</div><div class="sub">$200,000 · 13 runners · Mi Bago (Casse/Jose Ortiz) 2-1 favorite — skip · HRN flags very fast pace</div></div>
+    <div class="rh-r"><div class="post">4:32 PM</div><div class="purse">$200,000</div></div>
   </div>
-
-  <div class="spend-banner hot">
-    <div class="sb-label">⚡ Jackpot Race — Big Money</div>
-    <div class="sb-why">Celtic Dawn (Irad, undefeated) vs. All of It (chalk, 8-5). We skip chalk on top. Prat at 5-1, New York Special at 8-1, Considerate City at 8-1 are the upsets.</div>
-    <div class="sb-amt">$48</div>
-  </div>
-
-  <div class="slabel">Full Field — Post Position Order</div>
+  <div class="section-label">Full Field (turf starters only · MTO horses scratch if turf stays)</div>
   <div class="tbl-wrap"><table>
-    <thead><tr><th>PP</th><th>Horse</th><th>ML</th><th>Trainer</th><th>Jockey</th><th>Signal</th></tr></thead>
+    <thead><tr><th>PP</th><th>Horse</th><th>Trainer · Jockey</th><th>ML</th><th>Formula</th></tr></thead>
     <tbody>
-      <tr class="bomb"><td><span class="ppb b">1</span></td><td><div class="hname">New York Special <span class="tag tag-bomb">Bomb ⚡</span></div><div class="hmeta">— / — · 8-1 · won here last month, runner-up won next start · inside draw on inner turf is massive advantage · Carlos Martin barn — nearly everything they've sent out has been live · speed type</div></td><td class="odds-c">8/1</td><td>Martin</td><td>—</td><td><span class="sig sig-b">Bomb ⚡</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">2</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="fav"><td><span class="ppb f">3</span></td><td><div class="hname">All of It <span class="tag tag-fav">Fav Filter</span></div><div class="hmeta">Clement / Franco · 8-5 · 2-for-2, combined margin 8+ lengths · question is Lasix removal · still the most accomplished filly here · goes in box underneath only</div></td><td class="odds-c">8/5</td><td>Clement</td><td>Franco</td><td><span class="sig sig-f">Box underneath</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">4</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">5</span></td><td><div class="hname">Celtic Dawn <span class="tag tag-irad">IRAD</span></div><div class="hmeta">Martin / Irad Ortiz Jr. · 5-2 · 3-for-3 undefeated · won without Lasix twice (big advantage) · stretches to two turns · if she handles the trip she wins</div></td><td class="odds-c">5/2</td><td>Martin</td><td>Irad Ortiz Jr.</td><td><span class="sig sig-vv">Value ★★</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">6</span></td><td><div class="hname">Neshika <span class="tag tag-prat">PRAT</span></div><div class="hmeta">— / Prat · 5-1 · if Prat keeps her off the pace she has a strong closing chance · Prat leads the meet with 19 wins</div></td><td class="odds-c">5/1</td><td>—</td><td>Prat</td><td><span class="sig sig-v">Value ★</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">7</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="long"><td><span class="ppb l">8</span></td><td><div class="hname">Considerate City <span class="tag tag-long">Longshot</span></div><div class="hmeta">— / — · 8-1 · no outright wins (one by DQ) · improving with solid races against good company · has a chance to close into the money</div></td><td class="odds-c">8/1</td><td>—</td><td>—</td><td><span class="sig sig-l">Longshot</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">MTO</span></td><td><div class="hname">Lady Rose (MTO)</div><div class="hmeta">Scratches if turf is taken off. Check board before betting.</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">MTO</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">1</span></td><td><div class="hname">Two's a Crowd</div><div class="meta">Cloud Computing · 106 fig · 15-1</div></td><td>D. Ryan · Lezcano</td><td><span class="odds odds-s">15/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">2</span></td><td><div class="hname">Spirit of St Louis</div><div class="meta">Medaglia d'Oro · Brown / Franco · 3-1 · not as sharp lately</div></td><td>C. Brown · Franco</td><td><span class="odds odds-s">3/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">3</span></td><td><div class="hname">Leon Blue</div><div class="meta">Mo Town · 109 fig · 20-1</div></td><td>Giddings · Carmouche</td><td><span class="odds odds-s">20/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">4</span></td><td><div class="hname">Mi Bago</div><div class="meta">Vekoma · Casse / Jose Ortiz · 2-1 FAVORITE — skip entirely</div></td><td>M. Casse · Jose Ortiz</td><td><span class="odds odds-s">2/1</span></td><td>Skip — chalk</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">5</span></td><td><div class="hname">Tonka Warrior</div><div class="meta">Cupid · 125 fig — HIGHEST IN FIELD · Robertson / Hernandez · 8-1</div></td><td>Robertson · Hernandez</td><td><span class="odds odds-ls">8/1</span></td><td><span class="badge badge-ls">Longshot ★★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">6</span></td><td><div class="hname">Itsallcomintogetha</div><div class="meta">Weekend Hideaway · 108 fig · 12-1</div></td><td>Bartkowski · Saez</td><td><span class="odds odds-s">12/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">7</span></td><td><div class="hname">Sounds Like a Plan</div><div class="meta">Twirling Candy · De Paz / Santana · 6-1 · 3 straight wins · more settled since gelding</div></td><td>H. De Paz · Santana Jr.</td><td><span class="odds odds-ls">6/1</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">8</span></td><td><div class="hname">George Briggs</div><div class="meta">Fog of War · 128 fig · Clement / PRAT · 7-2 · Racing Biz #1 over Mi Bago · only 7 starts, still improving</div></td><td>M. Clement · Prat</td><td><span class="odds odds-ls">7/2</span></td><td><span class="badge badge-ls">Value ★★</span></td></tr>
+      <tr class="bomb"><td><span class="pp pp-b">9</span></td><td><div class="hname">Russian Realm</div><div class="meta">Constitution · 113 fig · Gargan / Elliott · 30-1 · Gargan won 2024 Belmont at 17-1 · BOMB</div></td><td>D. Gargan · C. Elliott</td><td><span class="odds odds-b">30/1</span></td><td><span class="badge badge-b">BOMB ⚡ 30-1</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">10</span></td><td><div class="hname">Bank Frenzy</div><div class="meta">Central Banker · MTO</div></td><td>R. Rodriguez · Franco</td><td><span class="odds odds-s">5/1</span></td><td>MTO</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">11</span></td><td><div class="hname">Doc Sullivan</div><div class="meta">Solomini · MTO</div></td><td>A. Green · TBA</td><td><span class="odds odds-s">9/5</span></td><td>MTO</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">12</span></td><td><div class="hname">Wynstock</div><div class="meta">Solomini · MTO</div></td><td>J. Sharp · Jose Ortiz</td><td><span class="odds odds-s">5/2</span></td><td>MTO</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">13</span></td><td><div class="hname">Dr. Kraft</div><div class="meta">The Lieutenant · MTO</div></td><td>I. Kantarmaci · Prat</td><td><span class="odds odds-s">8/1</span></td><td>MTO</td></tr>
     </tbody>
   </table></div>
-
-  <div class="pcall"><p><strong>This is Jackpot Race #2 — the feature of the day.</strong> Celtic Dawn (Irad, 5-2) is undefeated and goes for Carlos Martin — a barn sending out live horses all meet. The formula's key insight: All of It (8-5) is the chalk and will dominate the pool. We put her in the box underneath but do NOT key her on top. If Celtic Dawn wins with Neshika (Prat, 5-1) second, that's a real trifecta. If New York Special fires from the inside at 8-1 the payout jumps dramatically. The $1/combo trifecta box means any of our four horses winning pays well.</p></div>
-
-  <div class="slabel">Bets · Race 7 · Big Money</div>
-  <div class="tgrid">
-    <div class="ticket main">
-      <div class="t-type">Trifecta · Box · $1 per combo</div>
-      <div class="t-name">Box #5 Celtic Dawn, #6 Neshika (Prat), #1 New York Special, #3 All of It, #8 Considerate City</div>
-      <div class="t-horses"><span class="th th-key">#5 Celtic Dawn</span><span class="th th-long">#6 Neshika</span><span class="th th-bomb">#1 New York Special ⚡</span><span class="th th-val">#3 All of It</span><span class="th th-ls">#8 Considerate City</span></div>
-      <div class="t-foot"><div class="t-cost">60 combos · $0.50<strong>$30.00</strong></div><div class="t-say">"Trifecta box race 7, #5 #6 #1 #3 #8, fifty cents a combo"</div></div>
+  <div class="note"><p><strong>Russian Realm at 30-1 (Gargan/Elliott)</strong> is the bomb. Danny Gargan won the 2024 Belmont Stakes with Dornoch at 17-1 — he fires NY-bred longshots in stakes races. Fast pace scenario per HRN means the front runners (Mi Bago, Sounds Like a Plan) could collapse. Tonka Warrior has the highest speed figure in the entire field at 125. George Briggs (Prat, 7-2) is the Racing Biz upset pick. Put all four in the box and skip Mi Bago and Spirit of St. Louis entirely.</p></div>
+  <div class="bets">
+    <div class="bet main">
+      <div class="bet-type">Trifecta · Box · No chalk</div>
+      <div class="horses"><span class="horse-tag ht-ls">#8 George Briggs 7/2</span><span class="horse-tag ht-ls">#7 Sounds Like Plan 6/1</span><span class="horse-tag ht-ls">#5 Tonka Warrior 8/1</span><span class="horse-tag ht-b">#9 Russian Realm 30/1 ⚡</span></div>
+      <div class="bet-foot"><div class="cost">24 combos · $0.50<strong>$12</strong></div><div class="say">"Trifecta box R7 #8 #7 #5 #9 fifty cents"</div></div>
     </div>
-    <div class="ticket">
-      <div class="t-type">Exacta · Box · Key pairs</div>
-      <div class="t-name">Box #5, #6, #1, #8 — exclude chalk on top</div>
-      <div class="t-horses"><span class="th th-key">#5 Celtic Dawn</span><span class="th th-long">#6 Neshika</span><span class="th th-bomb">#1 NY Special</span><span class="th th-ls">#8 Considerate City</span></div>
-      <div class="t-foot"><div class="t-cost">12 combos · $1.50<strong>$18.00</strong></div><div class="t-say">"Exacta box race 7, #5 #6 #1 #8, dollar fifty a combo"</div></div>
+    <div class="bet">
+      <div class="bet-type">Superfecta · Box · $0.10</div>
+      <div class="horses"><span class="horse-tag ht-ls">#8 George Briggs</span><span class="horse-tag ht-ls">#7 Sounds Like Plan</span><span class="horse-tag ht-ls">#5 Tonka Warrior</span><span class="horse-tag ht-b">#9 Russian Realm ⚡</span><span class="horse-tag ht-ls">#2 Spirit of St L</span></div>
+      <div class="bet-foot"><div class="cost">120 combos · $0.10<strong>$12</strong></div><div class="say">"Superfecta box R7 #8 #7 #5 #9 #2 ten cents"</div></div>
     </div>
   </div>
-  <div class="race-total"><div><div class="rt-label">Race 7 total · JACKPOT RACE · trifecta $0.50 + exacta $1.50</div></div><div class="rt-amt">$48.00</div></div>
-  <div class="window"><div class="win-title">At the window</div>
-    <div class="wr"><div class="wtag wtri">TRI</div><div class="wsay">"Trifecta box, race 7, #5, #6, #1, #3, #8, fifty cents a combo"</div><div class="wcost">$30</div></div>
-    <div class="wr"><div class="wtag wex">EX</div><div class="wsay">"Exacta box, race 7, #5, #6, #1, #8, dollar fifty a combo"</div><div class="wcost">$18</div></div>
-  </div>
+  <div class="race-total"><div class="rt-l">Race 7 total · upset plays only</div><div class="rt-r">$24</div></div>
 </div>
 
-<!-- ════════════════════════ RACE 8 ════════════════════════ -->
-
+<!-- ═══ R8 ═══ -->
 <div id="r8" class="race-pane">
-  <div class="race-header">
-    <div class="rh-left">
-      <div class="rnum-label">Race 8 · 7 Furlongs · Dirt · Allowance Optional Claiming $80K</div>
-      <div class="rname">Race 8 — <em>Fillies & Mares AOC</em></div>
-      <div class="rdetails">$130,000 purse · Fillies & Mares 4yo & up · Best spread odds on the card · JACKPOT RACE #3</div>
-    </div>
-    <div class="rh-right"><div class="pt-label">Post</div><div class="pt">5:14 PM</div><div class="purse">$130,000</div></div>
+  <div class="rh">
+    <div class="rh-l"><div class="label">Race 8 · 1⅜M · Inner Turf · Waya Stakes Grade III · Fillies & Mares 3yo+</div><div class="title">⚡ <em>Waya Stakes</em> Grade III</div><div class="sub">$225,000 · 9 runners · DRF Best Bet = Silvology · JACKPOT RACE OF THE DAY</div></div>
+    <div class="rh-r"><div class="post">5:07 PM</div><div class="purse">$225,000</div></div>
   </div>
-
-  <div class="spend-banner hot">
-    <div class="sb-label">⚡ Jackpot Race — Big Money</div>
-    <div class="sb-why">Best odds distribution on the card — 7/2, 5/2, 7/2, 6/1. Four legitimate winners. Any three finishing 1-2-3 pays a real trifecta. Upgrade to $1 per combo.</div>
-    <div class="sb-amt">$36</div>
-  </div>
-
-  <div class="slabel">Full Field — Post Position Order</div>
+  <div class="section-label">Full Field</div>
   <div class="tbl-wrap"><table>
-    <thead><tr><th>PP</th><th>Horse</th><th>ML</th><th>Trainer</th><th>Jockey</th><th>Signal</th></tr></thead>
+    <thead><tr><th>PP</th><th>Horse</th><th>Trainer · Jockey</th><th>ML</th><th>Formula</th></tr></thead>
     <tbody>
-      <tr class="pick"><td><span class="ppb g">1</span></td><td><div class="hname">Munnings Express</div><div class="hmeta">— / — · 7-2 · 3 wins in a row before last-out turf experiment · gets back to preferred dirt · may be the speed of the speed · front runner</div></td><td class="odds-c">7/2</td><td>—</td><td>—</td><td><span class="sig sig-v">Value ★</span></td></tr>
-      <tr class="fav"><td><span class="ppb f">2</span></td><td><div class="hname">Senza Parole <span class="tag tag-irad">IRAD</span> <span class="tag tag-fav">Fav Filter</span></div><div class="hmeta">Brown / Irad Ortiz Jr. · 5-2 · flashed potential early career · third behind two quality mares last out, no shame · easier here without Ways and Means</div></td><td class="odds-c">5/2</td><td>Brown</td><td>Irad Ortiz Jr.</td><td><span class="sig sig-f">Box underneath</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">3</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">4</span></td><td><div class="hname">Beauty Reigns</div><div class="hmeta">Mott / Alvarado · 7-2 · closer, race has plenty of early speed · 2nd in G3 Victory Ride, 3rd in G1 Test · faster the pace the better her chances</div></td><td class="odds-c">7/2</td><td>Mott</td><td>Alvarado</td><td><span class="sig sig-vv">Value ★★</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">5</span></td><td><div class="hname">—</div><div class="hmeta">Verify at track</div></td><td class="odds-c">—</td><td>—</td><td>—</td><td><span class="sig sig-s">TBD</span></td></tr>
-      <tr class="long"><td><span class="ppb l">6</span></td><td><div class="hname">Queen's Martini <span class="tag tag-long">Longshot</span></div><div class="hmeta">— / Santana Jr. · 8-1 · good recent class · may run closer to leader than usual with Santana aboard · Santana #4 in meet standings</div></td><td class="odds-c">8/1</td><td>—</td><td>Santana Jr.</td><td><span class="sig sig-l">Longshot ★</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">7</span></td><td><div class="hname">Reputation <span class="tag tag-prat">PRAT</span></div><div class="hmeta">Weaver / Prat · 6-1 · one of the best 7-furlong efforts two back · off long layoff but returns to form if she runs back to that try</div></td><td class="odds-c">6/1</td><td>Weaver</td><td>Prat</td><td><span class="sig sig-v">Value ★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">1</span></td><td><div class="hname">Evershed (IRE)</div><div class="meta">Churchill (IRE) · 140 fig — HIGHEST IN FIELD · Delacour / PRAT · 5-1 · European shipper</div></td><td>Delacour · Prat</td><td><span class="odds odds-ls">5/1</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">2</span></td><td><div class="hname">Snipsnippitysnip</div><div class="meta">Girvin · 100 fig · Walsh / Zayas · 8-1</div></td><td>B. Walsh · Zayas</td><td><span class="odds odds-s">8/1</span></td><td>Skip</td></tr>
+      <tr class="bomb"><td><span class="pp pp-b">3</span></td><td><div class="hname">Whitethorn</div><div class="meta">Not This Time · Pletcher / SAEZ · 10-1 · huge move breaking maiden · 1⅜M is longer than anything she's faced · Pletcher G3 bombs fire regularly</div></td><td>Pletcher · Saez</td><td><span class="odds odds-b">10/1</span></td><td><span class="badge badge-b">BOMB ⚡★★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">4</span></td><td><div class="hname">Massarat</div><div class="meta">Curlin · 101 fig · Walsh / Carmouche · 9-2</div></td><td>B. Walsh · Carmouche</td><td><span class="odds odds-s">9/2</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">5</span></td><td><div class="hname">Venencia (FR)</div><div class="meta">Recoletos · 96 fig · Joseph / Husbands · 12-1</div></td><td>S. Joseph Jr. · Husbands</td><td><span class="odds odds-s">12/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">6</span></td><td><div class="hname">Storm Miami (IRE)</div><div class="meta">Blue Point · 104 fig · Green / Velazquez · 4-1 · Racing Biz #2 · improved when forwardly placed</div></td><td>A. Green · Velazquez</td><td><span class="odds odds-ls">4/1</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">7</span></td><td><div class="hname">Awesomesauce</div><div class="meta">Union Rags · 128 fig · Sharp / Jose Ortiz · 8-1 · Racing Biz #1 · state bred stakes winner · strong closer</div></td><td>J. Sharp · Jose Ortiz</td><td><span class="odds odds-ls">8/1</span></td><td><span class="badge badge-ls">Value ★★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">8</span></td><td><div class="hname">Silvology</div><div class="meta">Blame · 99 fig · McGaughey / Castellano · 7-2 · DRF BEST BET of the entire card · convincing win stretched out last time</div></td><td>McGaughey · Castellano</td><td><span class="odds odds-ls">7/2</span></td><td><span class="badge badge-ls">Value ★★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">9</span></td><td><div class="hname">Unmerited Favor</div><div class="meta">Summer Front · 106 fig · McPeek / Alvarado · 8-1 · headstrong last out</div></td><td>K. McPeek · Alvarado</td><td><span class="odds odds-s">8/1</span></td><td>Skip</td></tr>
     </tbody>
   </table></div>
-
-  <div class="callout"><p><strong>Best odds structure on the entire card.</strong> Mott/Alvarado with Beauty Reigns (7-2) is the formula's top pick — she's a closer and this race has natural speed in Munnings Express. Reputation (Prat, 6-1) has one of the best 7-furlong efforts in the field. Queen's Martini at 8-1 with Santana adds longshot exposure. Senza Parole (Irad/Brown, 5-2) goes in via Favorite Filter. A trifecta of Beauty Reigns, Reputation, and Queen's Martini in any order pays $80-200+. Upgrade to $1 per combo here.</p></div>
-
-  <div class="slabel">Bets · Race 8 · Big Money</div>
-  <div class="tgrid">
-    <div class="ticket main">
-      <div class="t-type">Trifecta · Box · $1 per combo — upgrade</div>
-      <div class="t-name">Box #4 Beauty Reigns, #7 Reputation (Prat), #6 Queen's Martini, #2 Senza Parole</div>
-      <div class="t-horses"><span class="th th-key">#4 Beauty Reigns</span><span class="th th-val">#7 Reputation</span><span class="th th-long">#6 Queen's Martini</span><span class="th th-ls">#2 Senza Parole</span></div>
-      <div class="t-foot"><div class="t-cost">24 combos · $1<strong>$24.00</strong></div><div class="t-say">"Trifecta box race 8, #4 #7 #6 #2, one dollar a combo"</div></div>
+  <div class="note"><p><strong>Whitethorn at 10-1 (Pletcher/Saez) is the longshot of the day.</strong> She made a massive move breaking her maiden and this 1⅜ mile trip is the longest she's faced — a closer getting distance for the first time with Pletcher training in a G3 is a classic live longshot. Awesomesauce (8-1, Jose Ortiz, 128 fig) is the Racing Biz top pick with a strong closing kick. Silvology is DRF's Best Bet of the card. Evershed has the highest speed figure in the field (140) with Prat. Box all four — skip the chalk.</p></div>
+  <div class="bets">
+    <div class="bet main">
+      <div class="bet-type">Trifecta · Box · $1 per combo</div>
+      <div class="horses"><span class="horse-tag ht-b">#3 Whitethorn 10/1 ⚡</span><span class="horse-tag ht-ls">#7 Awesomesauce 8/1</span><span class="horse-tag ht-ls">#8 Silvology 7/2</span><span class="horse-tag ht-ls">#1 Evershed 5/1</span></div>
+      <div class="bet-foot"><div class="cost">24 combos · $1<strong>$24</strong></div><div class="say">"Trifecta box R8 #3 #7 #8 #1 one dollar"</div></div>
     </div>
-    <div class="ticket">
-      <div class="t-type">Exacta · Box · Top price pair</div>
-      <div class="t-name">Box #4 Beauty Reigns, #7 Reputation, #6 Queen's Martini</div>
-      <div class="t-horses"><span class="th th-key">#4 Beauty Reigns</span><span class="th th-val">#7 Reputation</span><span class="th th-long">#6 Queen's Martini</span></div>
-      <div class="t-foot"><div class="t-cost">6 combos · $2<strong>$12.00</strong></div><div class="t-say">"Exacta box race 8, #4 #7 #6, two dollars a combo"</div></div>
+    <div class="bet">
+      <div class="bet-type">Exacta · Box · Prices only</div>
+      <div class="horses"><span class="horse-tag ht-b">#3 Whitethorn 10/1 ⚡</span><span class="horse-tag ht-ls">#7 Awesomesauce 8/1</span><span class="horse-tag ht-ls">#8 Silvology 7/2</span></div>
+      <div class="bet-foot"><div class="cost">6 combos · $4<strong>$24</strong></div><div class="say">"Exacta box R8 #3 #7 #8 four dollars"</div></div>
     </div>
   </div>
-  <div class="race-total"><div><div class="rt-label">Race 8 total · JACKPOT RACE · $1 trifecta + $2 exacta</div></div><div class="rt-amt">$36.00</div></div>
-  <div class="window"><div class="win-title">At the window</div>
-    <div class="wr"><div class="wtag wtri">TRI</div><div class="wsay">"Trifecta box, race 8, #4, #7, #6, #2, one dollar a combo"</div><div class="wcost">$24</div></div>
-    <div class="wr"><div class="wtag wex">EX</div><div class="wsay">"Exacta box, race 8, #4, #7, #6, two dollars a combo"</div><div class="wcost">$12</div></div>
-  </div>
+  <div class="race-total"><div class="rt-l">Race 8 total · JACKPOT · $1 trifecta + $4 exacta</div><div class="rt-r">$48</div></div>
 </div>
 
-<!-- ════════════════════════ RACE 9 ════════════════════════ -->
-
+<!-- ═══ R9 ═══ -->
 <div id="r9" class="race-pane">
-  <div class="race-header">
-    <div class="rh-left">
-      <div class="rnum-label">Race 9 · ~1 Mile · Turf · Maiden Claiming $50K</div>
-      <div class="rname">Race 9 — <em>Turf Maiden Claiming</em></div>
-      <div class="rdetails">Fillies & Mares · Closing race · Small bet to end the day with action</div>
-    </div>
-    <div class="rh-right"><div class="pt-label">Post</div><div class="pt">5:44 PM</div><div class="purse">$50,000</div></div>
+  <div class="rh">
+    <div class="rh-l"><div class="label">Race 9 · 6F · Dirt · Starter Optional Claiming $25K · F&M 4yo+</div><div class="title">Starter Optional <em>Claiming</em></div><div class="sub">$60,000 · 9 runners · City Blocks (Rice/Prat, 5-1) has the highest speed figure at 107</div></div>
+    <div class="rh-r"><div class="post">5:41 PM</div><div class="purse">$60,000</div></div>
   </div>
-
-  <div class="spend-banner sml">
-    <div class="sb-label">Action Only · Close the Day</div>
-    <div class="sb-why">Midtown Mischief is Champagne's Best Bet. You Know Better gets Prat and blinkers. Small exacta box to stay in until the end.</div>
-    <div class="sb-amt">$12</div>
-  </div>
-
-  <div class="slabel">Key Horses — Post Position Order</div>
+  <div class="section-label">Full Field</div>
   <div class="tbl-wrap"><table>
-    <thead><tr><th>PP</th><th>Horse</th><th>ML</th><th>Trainer</th><th>Jockey</th><th>Signal</th></tr></thead>
+    <thead><tr><th>PP</th><th>Horse</th><th>Trainer · Jockey</th><th>ML</th><th>Formula</th></tr></thead>
     <tbody>
-      <tr class="pick"><td><span class="ppb g">3</span></td><td><div class="hname">Midtown Mischief</div><div class="hmeta">— / — · 7-2 · drops to maiden claimer second off layoff · ran here last year — led into stretch, finished 3rd behind two that won stakes · significant form</div></td><td class="odds-c">7/2</td><td>—</td><td>—</td><td><span class="sig sig-vv">Value ★★</span></td></tr>
-      <tr class="pick"><td><span class="ppb g">6</span></td><td><div class="hname">You Know Better <span class="tag tag-prat">PRAT</span></div><div class="hmeta">— / Prat · 8-1 · second off the bench · ran fine to finish 3rd · gets blinkers AND Prat · may dictate terms on the lead from gate</div></td><td class="odds-c">8/1</td><td>—</td><td>Prat</td><td><span class="sig sig-v">Value ★</span></td></tr>
-      <tr class="long"><td><span class="ppb l">7</span></td><td><div class="hname">Garden of Grace</div><div class="hmeta">— / — · 4-1 · professional maiden at this point · goes back to turf, drops to right level · can pass others late which is rare in this field</div></td><td class="odds-c">4/1</td><td>—</td><td>—</td><td><span class="sig sig-l">Longshot</span></td></tr>
-      <tr class="fade"><td><span class="ppb n">10</span></td><td><div class="hname">Anna Brocknana</div><div class="hmeta">— / — · 6-1 · ran respectably last time after setting quick pace · Avery's Wonderland gets Irad but has had chances to improve</div></td><td class="odds-c">6/1</td><td>—</td><td>—</td><td><span class="sig sig-s">Skip</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">1</span></td><td><div class="hname">Majestic Return</div><div class="meta">Long On Value · 103 fig · 8-1</div></td><td>D'Alessandro · Lezcano</td><td><span class="odds odds-s">8/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">2</span></td><td><div class="hname">Proud Foot</div><div class="meta">First Samurai · 89 fig · 8-1</div></td><td>I. Kantarmaci · Gonzalez</td><td><span class="odds odds-s">8/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">3</span></td><td><div class="hname">Confirmed Star</div><div class="meta">Uptowncharlybrown · 88 fig · 12-1</div></td><td>M. Moore · Ruiz</td><td><span class="odds odds-s">12/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">4</span></td><td><div class="hname">Bam's Bliss Kiss</div><div class="meta">Solomini · 85 fig · Abreu / Castellano · 3-1 · six straight wins · speed dangerous here</div></td><td>J. Abreu · Castellano</td><td><span class="odds odds-ls">3/1</span></td><td><span class="badge badge-ls">Value</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">5</span></td><td><div class="hname">Fugitive Star</div><div class="meta">Nyquist · 83 fig · 15-1</div></td><td>D. Jacobson · K. Davis</td><td><span class="odds odds-s">15/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">6</span></td><td><div class="hname">City Blocks</div><div class="meta">Enticed · 107 fig — TOP FIG · Rice / PRAT · 5-1 · formula top pick</div></td><td>L. Rice · Prat</td><td><span class="odds odds-ls">5/1</span></td><td><span class="badge badge-ls">Value ★★</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">7</span></td><td><div class="hname">Heavenly Light</div><div class="meta">City of Light · 85 fig · 12-1</div></td><td>L. Rice · Carmouche</td><td><span class="odds odds-s">12/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">8</span></td><td><div class="hname">Sassy Princess</div><div class="meta">Cairo Prince · 83 fig · Jacobson / Alvarado · 4-1 · Racing Biz #1 · three straight wins prior</div></td><td>D. Jacobson · Alvarado</td><td><span class="odds odds-ls">4/1</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">9</span></td><td><div class="hname">Sweet Note</div><div class="meta">Hightail · 99 fig · LaRose / Jose Ortiz · 7-2 · near winner last time · should lead</div></td><td>K. LaRose · Jose Ortiz</td><td><span class="odds odds-ls">7/2</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
     </tbody>
   </table></div>
-
-  <div class="callout"><p>Midtown Mischief is Andrew Champagne's Best Bet of the day — the last time she ran here she led into the stretch and finished third behind two horses that went on to win stakes. That's significant form. Prat on You Know Better at 8-1 with blinkers is a classic late-day price play. Small bet, have fun.</p></div>
-
-  <div class="slabel">Bets · Race 9 · Small</div>
-  <div class="tgrid">
-    <div class="ticket main">
-      <div class="t-type">Exacta · Box</div>
-      <div class="t-name">Box #3 Midtown Mischief, #6 You Know Better (Prat), #7 Garden of Grace</div>
-      <div class="t-horses"><span class="th th-key">#3 Midtown Mischief</span><span class="th th-val">#6 You Know Better</span><span class="th th-long">#7 Garden of Grace</span></div>
-      <div class="t-foot"><div class="t-cost">6 combos · $2<strong>$12.00</strong></div><div class="t-say">"Exacta box race 9, #3 #6 #7, two dollars a combo"</div></div>
+  <div class="why" style="margin-top:12px;">City Blocks (Rice/Prat, 5-1) has the top speed figure at 107. Sweet Note (Jose Ortiz, 7-2) should lead. Sassy Princess (Alvarado, 4-1) is the Racing Biz pick. Simple exacta box of four — keep it cheap before the closing race.</div>
+  <div class="bets">
+    <div class="bet main">
+      <div class="bet-type">Exacta · Box</div>
+      <div class="horses"><span class="horse-tag ht-ls">#6 City Blocks 5/1</span><span class="horse-tag ht-ls">#9 Sweet Note 7/2</span><span class="horse-tag ht-ls">#8 Sassy Princess 4/1</span><span class="horse-tag ht-ls">#4 Bam's Bliss Kiss 3/1</span></div>
+      <div class="bet-foot"><div class="cost">12 combos · $1<strong>$12</strong></div><div class="say">"Exacta box R9 #6 #9 #8 #4 one dollar"</div></div>
     </div>
   </div>
-  <div class="race-total"><div><div class="rt-label">Race 9 total · closing action</div></div><div class="rt-amt">$12.00</div></div>
-  <div class="window"><div class="win-title">At the window</div>
-    <div class="wr"><div class="wtag wex">EX</div><div class="wsay">"Exacta box, race 9, #3, #6, #7, two dollars a combo"</div><div class="wcost">$12</div></div>
-  </div>
+  <div class="race-total"><div class="rt-l">Race 9 total</div><div class="rt-r">$12</div></div>
 </div>
 
-<!-- ════════════════════════ DAY SUMMARY ════════════════════════ -->
-
-<div id="day" class="race-pane">
-  <div class="race-header">
-    <div class="rh-left">
-      <div class="rnum-label">Full Day · Saratoga · Thursday July 23 2026</div>
-      <div class="rname"><em>Day Summary</em></div>
-      <div class="rdetails">9 races · Hunt one big payout · Three jackpot races · $186 total</div>
+<!-- ═══ R10 ═══ -->
+<div id="r10" class="race-pane">
+  <div class="rh">
+    <div class="rh-l"><div class="label">Race 10 · 5½F · Turf · Allowance · 3yo+ Open · 12 runners</div><div class="title">Turf Sprint <em>Allowance</em></div><div class="sub">$105,000 · Illmatic (Clement/Prat) 7-5 is pool-saturating favorite · Skip entirely · DRF picks Stormy Birthday at 12-1</div></div>
+    <div class="rh-r"><div class="post">6:15 PM</div><div class="purse">$105,000</div></div>
+  </div>
+  <div class="section-label">Full Field (MTO horses scratch if turf stays in)</div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>PP</th><th>Horse</th><th>Trainer · Jockey</th><th>ML</th><th>Formula</th></tr></thead>
+    <tbody>
+      <tr class="skip"><td><span class="pp pp-s">1</span></td><td><div class="hname">Illmatic</div><div class="meta">Honest Mischief · Clement / Prat · 7-5 FAVORITE — pool saturated, skip entirely</div></td><td>Clement · Prat</td><td><span class="odds odds-s">7/5</span></td><td>Skip — chalk</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">2</span></td><td><div class="hname">Three Thirteen</div><div class="meta">Unified · 97 fig · 15-1</div></td><td>Giddings · Bridgmohan</td><td><span class="odds odds-s">15/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">3</span></td><td><div class="hname">Fireballin</div><div class="meta">Honest Mischief · Maker / K. Davis · 12-1</div></td><td>M. Maker · K. Davis</td><td><span class="odds odds-s">12/1</span></td><td>Skip</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">4</span></td><td><div class="hname">King Puck</div><div class="meta">Twirling Candy · 50 fig · Maker / Alvarado · 15-1</div></td><td>M. Maker · Alvarado</td><td><span class="odds odds-s">15/1</span></td><td>Skip</td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">5</span></td><td><div class="hname">Rhyton</div><div class="meta">Kantharos · 62 fig · Clement / Jose Ortiz · 6-1 · DRF #3 · late finisher</div></td><td>Clement · Jose Ortiz</td><td><span class="odds odds-ls">6/1</span></td><td><span class="badge badge-ls">Value</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">6</span></td><td><div class="hname">East Coast Girl</div><div class="meta">Laoban · 118 fig · 10-1 · small barn</div></td><td>Gutterson · De Diego</td><td><span class="odds odds-s">10/1</span></td><td>Skip</td></tr>
+      <tr class="bomb"><td><span class="pp pp-b">7</span></td><td><div class="hname">Stormy Birthday</div><div class="meta">Get Stormy · 107 fig · Ribaudo / C. Elliott · 12-1 · DRF TOP PICK at a big price · proven going short · terrific race at a mile last out</div></td><td>R. Ribaudo · C. Elliott</td><td><span class="odds odds-b">12/1</span></td><td><span class="badge badge-b">BOMB ⚡★★</span></td></tr>
+      <tr class="ls"><td><span class="pp pp-ls">8</span></td><td><div class="hname">Joker On Fire</div><div class="meta">Practical Joke · 67 fig · Levine / Lezcano · 3-1 · Racing Biz #1 · knocking on door</div></td><td>B. Levine · Lezcano</td><td><span class="odds odds-ls">3/1</span></td><td><span class="badge badge-ls">Value ★</span></td></tr>
+      <tr class="bomb"><td><span class="pp pp-b">9</span></td><td><div class="hname">Van Vollenhoven</div><div class="meta">Big Brown · 62 fig · Duggan / Castellano · 10-1 · adds blinkers · classic equipment change bomb</div></td><td>D. Duggan · Castellano</td><td><span class="odds odds-b">10/1</span></td><td><span class="badge badge-b">BOMB ⚡</span></td></tr>
+      <tr class="skip"><td><span class="pp pp-s">10</span></td><td><div class="hname">Vekinda</div><div class="meta">Vekoma · 96 fig · Weaver / TBA · 6-1 · MTO</div></td><td>G. Weaver · TBA</td><td><span class="odds odds-s">6/1</span></td><td>MTO</td></tr>
+      <tr class="skip"><td><span class="pp pp-s">11</span></td><td><div class="hname">B Provocateur</div><div class="meta">Take Charge Indy · 101 fig · Rodriguez / TBA · 4-1 · MTO</div></td><td>R. Rodriguez · TBA</td><td><span class="odds odds-s">4/1</span></td><td>MTO</td></div></tr>
+      <tr class="skip"><td><span class="pp pp-s">12</span></td><td><div class="hname">Music in Motion</div><div class="meta">Maclean's Music · 106 fig · Rice / Jose Ortiz · 7-2 · MTO</div></td><td>L. Rice · Jose Ortiz</td><td><span class="odds odds-s">7/2</span></td><td>MTO</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><p><strong>Stormy Birthday at 12-1 is DRF's own top pick</strong> — they almost never flag a double-digit longshot as the #1 selection. He's proven going short on turf and just ran a great race at a mile. Van Vollenhoven (Castellano, 10-1) adds blinkers — classic improvement angle. Skip Illmatic (7-5) entirely — you cannot make money with a 7-5 horse on top of an exacta or trifecta. End the day swinging at the prices.</p></div>
+  <div class="bets">
+    <div class="bet main">
+      <div class="bet-type">Trifecta · Box · Prices only · No Illmatic</div>
+      <div class="horses"><span class="horse-tag ht-b">#7 Stormy Birthday 12/1 ⚡</span><span class="horse-tag ht-ls">#8 Joker On Fire 3/1</span><span class="horse-tag ht-b">#9 Van Vollenhoven 10/1 ⚡</span><span class="horse-tag ht-ls">#5 Rhyton 6/1</span></div>
+      <div class="bet-foot"><div class="cost">24 combos · $0.50<strong>$12</strong></div><div class="say">"Trifecta box R10 #7 #8 #9 #5 fifty cents"</div></div>
     </div>
-    <div class="rh-right"><div class="pt-label">Day total</div><div class="pt">$186</div><div class="purse">9 races</div></div>
+    <div class="bet">
+      <div class="bet-type">Exacta · Box · Two bombs</div>
+      <div class="horses"><span class="horse-tag ht-b">#7 Stormy Birthday 12/1 ⚡</span><span class="horse-tag ht-b">#9 Van Vollenhoven 10/1 ⚡</span><span class="horse-tag ht-ls">#8 Joker On Fire 3/1</span></div>
+      <div class="bet-foot"><div class="cost">6 combos · $2<strong>$12</strong></div><div class="say">"Exacta box R10 #7 #9 #8 two dollars"</div></div>
+    </div>
+  </div>
+  <div class="race-total"><div class="rt-l">Race 10 total · close strong · two bombs on top</div><div class="rt-r">$24</div></div>
+</div>
+
+<!-- ═══ DAY ═══ -->
+<div id="day" class="race-pane">
+  <div class="rh">
+    <div class="rh-l"><div class="label">Full Day · Saratoga · August 28 2026</div><div class="title"><em>Day Summary</em></div><div class="sub">All longshots · Simple boxes · No chalk on top · $130 total</div></div>
+    <div class="rh-r"><div class="post">$130</div><div class="purse">10 races</div></div>
+  </div>
+  <div class="day-grid">
+    <div class="day-row"><div class="dr-l"><div class="dr-race">R1 · 1:10p · 2yo Turf Fillies Maiden · 7 runners</div><div class="dr-pick">EX box #3 Quartz Mtn (5/2) · #6 Pay Monthly (5/1) · #4 Breaker (9/2) · #2 Bolt Island (6/1) — skip Rockabye 8-5</div></div><div class="dr-cost">$12</div></div>
+    <div class="day-row"><div class="dr-l"><div class="dr-race">R2 · 1:43p · Claiming 6½f Dirt · 7 runners</div><div class="dr-pick">EX box #4 Short Shift (7/2) · #6 Jackie the Joker (6/1) · #2 Ah Ca Ira (3/1) — skip Bellacose 9-5</div></div><div class="dr-cost">$6</div></div>
+    <div class="day-row"><div class="dr-l"><div class="dr-race">R3 · 2:16p · Claiming 1⅛M Dirt · 7 runners · Polar Bear Plunge 6-1 bomb</div><div class="dr-pick">TRI box #7 Polar Bear Plunge · #6 Fever Night · #2 Shipsational · #1 Interlock ($0.50) — skip Spoiler 1-1</div></div><div class="dr-cost">$12</div></div>
+    <div class="day-row"><div class="dr-l"><div class="dr-race">R4 · 2:49p · Starter OC 6½f Dirt · 8 runners</div><div class="dr-pick">EX box #6 Shoot the Nickel (Prat 5/2) · #8 Normandy Coast (4/1) · #1 Norwich (3/1)</div></div><div class="dr-cost">$6</div></div>
+    <div class="day-row"><div class="dr-l"><div class="dr-race">R5 · 3:23p · ⚡ 2yo Inner Turf Maiden · 12 runners · JACKPOT</div><div class="dr-pick">TRI box #6 #2 #9 #1 #3 ($0.20) · SUP box #6 #2 #9 #1 #7 Harpoon 20-1 ($0.10) — skip Mandy Steph 7-2</div></div><div class="dr-cost">$24</div></div>
+    <div class="day-row"><div class="dr-l"><div class="dr-race">R6 · 3:57p · 2yo Colts Dirt Maiden · 11 runners</div><div class="dr-pick">TRI box #7 Freedom Charge (7/2) · #11 Hammerin Henry (Cox/Franco 5/1) · #8 Five Grand (Prat 6/1) · #9 McMoon (4/1) ($0.50)</div></div><div class="dr-cost">$12</div></div>
+    <div class="day-row"><div class="dr-l"><div class="dr-race">R7 · 4:32p · West Point Stakes $200K · 13 runners</div><div class="dr-pick">TRI box #8 George Briggs · #7 Sounds Like Plan · #5 Tonka Warrior · #9 Russian Realm 30-1 bomb ($0.50) — skip Mi Bago 2-1</div></div><div class="dr-cost">$24</div></div>
+    <div class="day-row"><div class="dr-l"><div class="dr-race">R8 · 5:07p · ⚡ Waya Stakes G3 $225K · 9 runners · JACKPOT</div><div class="dr-pick">TRI box #3 Whitethorn 10-1 · #7 Awesomesauce 8-1 · #8 Silvology 7-2 · #1 Evershed 5-1 ($1) · EX box #3 #7 #8 ($4)</div></div><div class="dr-cost">$48</div></div>
+    <div class="day-row"><div class="dr-l"><div class="dr-race">R9 · 5:41p · Starter OC 6f Dirt · 9 runners</div><div class="dr-pick">EX box #6 City Blocks (Prat 5/1) · #9 Sweet Note (7/2) · #8 Sassy Princess (4/1) · #4 Bam's Bliss Kiss (3/1)</div></div><div class="dr-cost">$12</div></div>
+    <div class="day-row"><div class="dr-l"><div class="dr-race">R10 · 6:15p · Allowance 5½f Turf · 12 runners</div><div class="dr-pick">TRI box #7 Stormy Birthday 12-1 · #8 Joker On Fire · #9 Van Vollenhoven 10-1 · #5 Rhyton ($0.50) · EX box #7 #9 #8 ($2) — skip Illmatic 7-5</div></div><div class="dr-cost">$24</div></div>
+    <div class="day-total"><div class="dt-l">Day total · Longshots only · Simple boxes</div><div class="dt-r">$180</div></div>
   </div>
 
-  <div class="day-sum">
-    <div class="ds-row"><div class="ds-left"><div class="ds-race">R1 · 1:10 PM · Maiden Claiming 7f Dirt</div><div class="ds-bets">EX box #3 Bounding Along, #6, #2, #9 — Prat on 7-2</div></div><span class="ds-type sml">Action</span><div class="ds-cost">$12</div></div>
-    <div class="ds-row"><div class="ds-left"><div class="ds-race">R2 · 1:44 PM · Turf Claiming 1 1/16m</div><div class="ds-bets">EX box #3 Light Fantastic (Irad/Cox), #5, #6, #8</div></div><span class="ds-type sml">Action</span><div class="ds-cost">$12</div></div>
-    <div class="ds-row"><div class="ds-left"><div class="ds-race">R3 · 2:19 PM · Claiming 7f Dirt · Mr. Skylight angle</div><div class="ds-bets">TRI box 5-horse ($0.20) + EX box #7 #9 #3 #8 ($1)</div></div><span class="ds-type med">Medium</span><div class="ds-cost">$24</div></div>
-    <div class="ds-row"><div class="ds-left"><div class="ds-race">R4 · 2:54 PM · $130K AOC Turf · Spirit of St. Louis 2-1</div><div class="ds-bets">EX box #5 #6 #2 only — trap race, absolute minimum</div></div><span class="ds-type sml">Action</span><div class="ds-cost">$6</div></div>
-    <div class="ds-row"><div class="ds-left"><div class="ds-race">R5 · 3:29 PM · ⚡ 2yo Turf Maiden · JACKPOT</div><div class="ds-bets">TRI box $1 + SUP box 5-horse $0.10 — Side Quest (Irad) on top</div></div><span class="ds-type hot">⚡ Big</span><div class="ds-cost">$48</div></div>
-    <div class="ds-row"><div class="ds-left"><div class="ds-race">R6 · 4:04 PM · $43K Claiming 6f · Ancient World puzzle</div><div class="ds-bets">EX box #10 Tapwrits Temper, #4 Nantz, #9 Schlomo — skip chalk</div></div><span class="ds-type sml">Action</span><div class="ds-cost">$6</div></div>
-    <div class="ds-row"><div class="ds-left"><div class="ds-race">R7 · 4:39 PM · ⚡ Suzie O'Cain $200K · JACKPOT</div><div class="ds-bets">TRI box 5-horse $0.50 + EX box 4-horse $1.50 — Celtic Dawn (Irad) on top</div></div><span class="ds-type hot">⚡ Big</span><div class="ds-cost">$48</div></div>
-    <div class="ds-row"><div class="ds-left"><div class="ds-race">R8 · 5:14 PM · ⚡ $130K AOC 7f Fillies · JACKPOT</div><div class="ds-bets">TRI box $1 + EX box $2 — Beauty Reigns / Prat / Queen's Martini</div></div><span class="ds-type hot">⚡ Big</span><div class="ds-cost">$36</div></div>
-    <div class="ds-row"><div class="ds-left"><div class="ds-race">R9 · 5:44 PM · Turf Maiden Claiming · Closing race</div><div class="ds-bets">EX box #3 Midtown Mischief, #6 You Know Better (Prat), #7 Garden of Grace</div></div><span class="ds-type sml">Action</span><div class="ds-cost">$12</div></div>
-    <div class="ds-total"><div class="ds-tl">Day total · 9 races · Formula v2</div><div class="ds-ta">$186</div></div>
-  </div>
-
-  <div class="slabel" style="margin-top:20px;">What We're Hunting</div>
-  <div class="pcall"><p><strong>Race 5 superfecta is the day's lottery play.</strong> A $0.10 superfecta in a 2-year-old turf maiden with first-time starters regularly pays $200–2,000 when a longshot snaps into 4th. We're putting $12 into 120 combinations. One hit changes the entire day. At the paddock — find the longest-priced horse with a Casse, Cox, Maker, or Pletcher connection and add them to your super box as the fifth horse.</p></div>
-  <div class="pcall"><p><strong>Race 7 trifecta is the key race.</strong> Celtic Dawn (Irad, 5-2) is undefeated on turf. New York Special (#1) has an inside draw on the inner turf which is a huge advantage. If All of It (the 8-5 chalk) runs third instead of first, the trifecta with Celtic Dawn and New York Special or Neshika on top pays $150-400+. We have $30 worth of $0.50 trifecta combinations covering every scenario except All of It winning.</p></div>
-  <div class="callout"><p><strong>Race 8 is the best structure.</strong> Four legit horses, spread odds, $1 per trifecta combo. If Beauty Reigns closes into a trifecta with Reputation (Prat, 6-1) and Queen's Martini (8-1), that pays $80-200 for $1. We have 24 combinations covering all orderings. At $1 per combo this is a real investment not a token bet.</p></div>
-
-  <div class="warn"><p><strong>Races 4 and 6 are trap races.</strong> Spirit of St. Louis (2-1) will win Race 4 but the payout is worthless — $6 max bet only. Ancient World has alarming red flags at 8-5. We skip him entirely and put $6 on the horses that can beat him. Every dollar saved from these races goes into R5, R7, R8.</p></div>
-
-  <div class="slabel" style="margin-top:18px;">Full Day Cheat Sheet</div>
-  <div class="window"><div class="win-title">Window-ready · all 9 races</div>
-    <div class="wr"><div class="wtag wex" style="min-width:24px;">R1</div><div class="wsay">EX box #3 #6 #2 #9 ($1)</div><div class="wcost">$12</div></div>
-    <div class="wr"><div class="wtag wex" style="min-width:24px;">R2</div><div class="wsay">EX box #3 #5 #6 #8 ($1) · verify PPs at track</div><div class="wcost">$12</div></div>
-    <div class="wr"><div class="wtag wtri" style="min-width:24px;">R3</div><div class="wsay">TRI box #7 #9 #3 #8 #1 ($0.20) · EX box #7 #9 #3 #8 ($1)</div><div class="wcost">$24</div></div>
-    <div class="wr"><div class="wtag wex" style="min-width:24px;">R4</div><div class="wsay">EX box #5 #6 #2 ($1) · minimum only</div><div class="wcost">$6</div></div>
-    <div class="wr"><div class="wtag wsup" style="min-width:24px;">R5 ⚡</div><div class="wsay">TRI box #9 #4 #2 +1 longshot ($1) · SUP box #9 #4 #2 +2 longshots ($0.10)</div><div class="wcost">$48</div></div>
-    <div class="wr"><div class="wtag wex" style="min-width:24px;">R6</div><div class="wsay">EX box #10 #4 #9 ($1) · skip chalk #1</div><div class="wcost">$6</div></div>
-    <div class="wr"><div class="wtag wtri" style="min-width:24px;">R7 ⚡</div><div class="wsay">TRI box #5 #6 #1 #3 #8 ($0.50) · EX box #5 #6 #1 #8 ($1.50)</div><div class="wcost">$48</div></div>
-    <div class="wr"><div class="wtag wtri" style="min-width:24px;">R8 ⚡</div><div class="wsay">TRI box #4 #7 #6 #2 ($1) · EX box #4 #7 #6 ($2)</div><div class="wcost">$36</div></div>
-    <div class="wr"><div class="wtag wex" style="min-width:24px;">R9</div><div class="wsay">EX box #3 #6 #7 ($2)</div><div class="wcost">$12</div></div>
-  </div>
+  <div class="note" style="margin-top:16px;"><p><strong>The three races worth real money today:</strong> Race 5 (12-horse 2yo turf maiden, Harpoon 20-1 in the super), Race 7 (Russian Realm 30-1 in a fast-pace NY-bred stakes), Race 8 (Whitethorn 10-1 Pletcher/Saez in the G3 — this is the longshot of the day). The other seven races are small maintenance bets. Every chalk has been skipped. Every bet is a simple box. Good luck. 🏇</p></div>
 </div>
 
 <footer>
-  <div class="foot-inner">
+  <div class="foot">
     <div>
-      <div class="foot-brand">Value Bet Formula v2</div>
-      <div class="foot-meta">Saratoga Race Course · Thursday July 23 2026 · 9 races · $186 total</div>
-      <div class="foot-disc">For entertainment purposes only. Never bet more than you can afford to lose. Must be 21+ to wager. Problem gambling? Call 1-877-8-HOPE-NY.</div>
-    </div>
-    <div style="text-align:right;">
-      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px;">First post</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--gold);">1:10 PM</div>
-      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text-dim);">Thursday July 23 2026 · Saratoga Springs NY</div>
+      <div class="foot-brand">Value Bet Formula v2 · Longshot Edition</div>
+      <div class="foot-disc">Saratoga Race Course · Friday August 28 2026 · For entertainment purposes only. Never bet more than you can afford to lose. Must be 21+. Problem gambling? 1-877-8-HOPE-NY.</div>
     </div>
   </div>
 </footer>
-
 </div>
 
 <script>
-function showRace(id,btn){
+function go(id,btn){
   document.querySelectorAll('.race-pane').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.rnav').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -866,6 +553,5 @@ function showRace(id,btn){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
-
 </body>
 </html>
